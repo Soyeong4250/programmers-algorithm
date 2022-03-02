@@ -3,8 +3,7 @@ package Hash;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class marathon {  // ¿ÏÁÖÇÏÁö ¸øÇÑ ¼±¼ö
-
+public class marathon {  // ì™„ì£¼í•˜ì§€ ëª»í•œ ì„ ìˆ˜
 	public static void main(String[] args) {
 		// BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
@@ -23,14 +22,14 @@ public class marathon {  // ¿ÏÁÖÇÏÁö ¸øÇÑ ¼±¼ö
 		HashMap<String, Integer> map = new HashMap<>();
 		
 		for (String p : participant) {
-			map.put(p, map.getOrDefault(p, 0) + 1);  // getOrDefault(°¡Á®¿Í¾ß ÇÏ´Â ¿ä¼ÒÀÇ Å°, ¸ÅÇÎµÈ °ªÀÌ ¾ø´Â °æ¿ì ¹ÝÈ¯µÇ¾î¾ß ÇÏ´Â ±âº»°ª) 
+			map.put(p, map.getOrDefault(p, 0) + 1); 
 		}
 		for (String p : completion) {
 			map.put(p,  map.get(p) - 1);
 		}
 		
 		for (String key : map.keySet()) {  // map.keySet()
-			// System.out.println(String.format("¼±¼ö¸í : %s, °ª: %d", key, map.get(key)));
+			// System.out.println(String.format("ì„ ìˆ˜ëª… : %s, ê°’: %d", key, map.get(key)));
 			if(map.get(key) != 0) {
 				answer = key;
 			}

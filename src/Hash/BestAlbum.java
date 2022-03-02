@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class BestAlbum {  // º£½ºÆ® ¾Ù¹ü
+public class BestAlbum {  // ë² ìŠ¤íŠ¸ ì•¨ë²”
 
 	public static void main(String[] args) {
 		String[] genres = {"classic", "pop", "classic", "classic", "pop"};
@@ -16,7 +16,7 @@ public class BestAlbum {  // º£½ºÆ® ¾Ù¹ü
 	}
 
 	private static int[] solution(String[] genres, int[] plays) {
-		// 1. ¼ÓÇÑ ³ë·¡°¡ °¡Àå ¸¹Àº Àå¸£
+		// 1. ì†í•œ ë…¸ë˜ê°€ ê°€ì¥ ë§ì€ ì¥ë¥´
 		HashMap<String, Integer> map = new HashMap<>();
 		
 		for (int i = 0; i < genres.length; i++) {
@@ -24,28 +24,28 @@ public class BestAlbum {  // º£½ºÆ® ¾Ù¹ü
 			map.put(genre, map.getOrDefault(genre, 0) + plays[i]);
 		}
 
-		// È®ÀÎ
+		// í™•ì¸
 		System.out.println("====================1=====================");
 		for (String key : map.keySet()) {
-			System.out.println(String.format("Àå¸£¸í : %s, Àç»ıÈ½¼ö: %d", key, map.get(key)));
+			System.out.println(String.format("ï¿½å¸£ï¿½ï¿½ : %s, ï¿½ï¿½ï¿½È½ï¿½ï¿½: %d", key, map.get(key)));
 		}System.out.println();
 
 		List<String> listKeySet = new ArrayList<>(map.keySet());
 		
-		// ³»¸²Â÷¼ø Á¤·Ä
+		// ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
 		Collections.sort(listKeySet, (value1, value2) -> (map.get(value2).compareTo(map.get(value1))));
-		// È®ÀÎ
+		// í™•ì¸
 		System.out.println("====================2=====================");
 		for(String key : listKeySet) {
 			System.out.println("key : " + key + " , " + "value : " + map.get(key)); 
 		}System.out.println();
 		
 		
-		// 2. Àç»ı  È½¼ö°¡ °¡Àå ¸¹Àº ³ë·¡
+		// 2. ì¬ìƒ  íšŸìˆ˜ê°€ ê°€ì¥ ë§ì€ ë…¸ë˜
 		ArrayList<Integer> list = new ArrayList<>();
 		for (int i = 0; i < listKeySet.size(); i++) {
 			String genre = listKeySet.get(i);
-			// Ã¹¹øÂ°
+			// ì²«ë²ˆì§¸
 			int max = 0;
 			int first = -1;
 			for (int j = 0; j < genres.length; j++) {
@@ -54,7 +54,7 @@ public class BestAlbum {  // º£½ºÆ® ¾Ù¹ü
 					first = j;
 				}
 			}
-			// µÎ¹øÂ°
+			// ë‘ë²ˆì§¸
 			max = 0;
 			int second = -1;
 			for (int j = 0; j < genres.length; j++) {
@@ -65,7 +65,7 @@ public class BestAlbum {  // º£½ºÆ® ¾Ù¹ü
 			}
 			
 			list.add(first);
-			// ÇÑ Àå¸£¿¡ ÇÑ°î¸¸ ÀÖÀ» °æ¿ì¿¡´Â µÎ¹øÂ° °î Ãß°¡ x
+			// í•œ ì¥ë¥´ì— í•œê³¡ë§Œ ìˆì„ ê²½ìš°ì—ëŠ” ë‘ë²ˆì§¸ ê³¡ ì¶”ê°€ x
 			if(second != -1) {
 				list.add(second);
 			}			

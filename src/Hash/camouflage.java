@@ -2,7 +2,7 @@ package Hash;
 
 import java.util.HashMap;
 
-public class camouflage { // À§Àå
+public class camouflage { // ìœ„ì¥
 
 	public static void main(String[] args) {
 		String[][] clothes = { { "yellowhat", "headgear" }, { "bluesunglasses", "eyewear" },
@@ -13,27 +13,28 @@ public class camouflage { // À§Àå
 
 	private static int solution(String[][] clothes) {
 		// int answer = 0;
-
-		HashMap<String, Integer> map = new HashMap<>();
 		
+		// 2ê°€ì§€ ì´ìƒì˜ ì¡°í•©
+		HashMap<String, Integer> map = new HashMap<>();
+				
 		for (int i = 0; i < clothes.length; i++) {
 			String t = clothes[i][1];
-			map.put(t,  map.getOrDefault(t, 1) + 1);  // Âø¿ëÀ» ¾ÈÇßÀ»¶§±îÁö ÇÕÃÄ¼­ 1ºÎÅÍ ½ÃÀÛ
+			map.put(t,  map.getOrDefault(t, 1) + 1);  // ì°©ìš©ì„ ì•ˆí–ˆì„ë•Œê¹Œì§€ í•©ì³ì„œ 1ë¶€í„° ì‹œì‘
 		}
-		
-		// È®ÀÎ
+				
+		// í™•ì¸
 		for (String key : map.keySet()) {  
-			System.out.println(String.format("Å¸ÀÔ : %s, °ª: %d", key, map.get(key)));
+			System.out.println(String.format("íƒ€ì… : %s, ê°’: %d", key, map.get(key)));
 		}
-		
+				
 		int answer = 1;
-		// Á¶ÇÕÀÇ ¼ö ±¸ÇÏ±â
+		// ì¡°í•©ì˜ ìˆ˜ êµ¬í•˜ê¸°
 		for (int cnt : map.values()) {
 			answer *= cnt;
 		}
-		
-		answer -= 1;  // ¸ğµÎ Âø¿ëx
-		
+				
+		answer -= 1;  // ëª¨ë‘ ì°©ìš©x
+				
 		return answer;
 	}
 

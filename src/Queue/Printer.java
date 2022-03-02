@@ -24,10 +24,11 @@ public class Printer {
 	}
 
 	private static int solution(int[] priorities, int location) {
+
 		int answer = 0;
 		Queue<Print> q = new LinkedList<>();
 		
-		// q¿¡ µ¥ÀÌÅÍ ³Ö±â
+		// qì— ë°ì´í„° ë„£ê¸°
 		for (int i = 0; i < priorities.length; i++) {
 			Print p = new Print(priorities[i], i);
 			q.add(p);
