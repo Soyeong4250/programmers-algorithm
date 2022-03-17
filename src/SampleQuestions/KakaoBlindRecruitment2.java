@@ -29,7 +29,7 @@ public class KakaoBlindRecruitment2 { // 오픈채팅방
 			if(command.equals("Enter")) {
 				map.put(id, nickName);
 			} else if(command.equals("Change")) {
-				map.put(id, nickName);
+				map.put(id, nickName); 
 			}
 		}
 		
