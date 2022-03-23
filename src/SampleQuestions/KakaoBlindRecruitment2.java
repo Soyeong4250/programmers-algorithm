@@ -17,7 +17,7 @@ public class KakaoBlindRecruitment2 { // 메뉴 리뉴얼
 		String[] orders = {"XYZ", "XWY", "WXA"};
 		int[] course = { 2, 3, 4 };
 
-		solution(orders, course);
+		System.out.println(Arrays.toString(solution(orders, course)));
 	}
 
 	private static String[] solution(String[] orders, int[] course) {
@@ -38,7 +38,8 @@ public class KakaoBlindRecruitment2 { // 메뉴 리뉴얼
 			}
 		}
 		
-		System.out.println(map);
+		// 확인
+		// System.out.println(map);
 		
 		// 3. Entry를 이용한 hash 정렬
 		List<Entry<String, Integer>> entryList = new ArrayList<Entry<String, Integer>>(map.entrySet());
@@ -55,7 +56,7 @@ public class KakaoBlindRecruitment2 { // 메뉴 리뉴얼
 		});
 		
 		// 확인
-		System.out.println(entryList);
+		// System.out.println(entryList);
 		
 		// 정답 담기
 		List<String> answerList = new ArrayList<>();
@@ -80,21 +81,21 @@ public class KakaoBlindRecruitment2 { // 메뉴 리뉴얼
 		for (int i = 0; i < answerList.size(); i++) {
 			answer[i] = answerList.get(i);
 		}
-		System.out.println(answer);
+		// System.out.println(answer);
 		return answer;
 	}
 
 	private static void Combination(String str, String order, int cnt) {
 		// 기저조건
 		if(cnt == 0) {  // 다 골랐다
-			System.out.println("다 골랐습니다");
-			System.out.println(str);
+//			System.out.println("다 골랐습니다");
+//			System.out.println(str);
 			map.put(str, map.getOrDefault(str, 0) + 1);  // hashmap에 조합 개수 + 1
 			return;
 		}
 		
 		for (int i = 0; i < order.length(); i++) {
-			System.out.println(order.charAt(i));
+//			System.out.println(order.charAt(i));
 			Combination(str + order.charAt(i), order.substring(i+1), cnt-1); 
 		}
 		
