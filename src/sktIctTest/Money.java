@@ -1,4 +1,4 @@
-package CodingTest;
+package sktIctTest;
 
 public class Money {
 
