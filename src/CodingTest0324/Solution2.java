@@ -1,4 +1,4 @@
-package TossBank;
+package CodingTest0324;
 
 public class Solution2 {  // 3, 4, 5, 9, 10, 15
 

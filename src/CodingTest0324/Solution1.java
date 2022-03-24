@@ -1,4 +1,4 @@
-package TossBank;
+package CodingTest0324;
 
 import java.util.Arrays;
 
