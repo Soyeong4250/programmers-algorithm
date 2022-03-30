@@ -15,12 +15,12 @@ public class KakaoBlindRecruitment7 { // 괄호 변환
 	static String u, v;
 
 	private static String solution(String p) {
-		// 1단계
-		if (p.length() == 0) {
-			u = "";
-			
-			return u;
-		}
+//		// 1단계
+//		if (p.length() == 0) {
+//			u = "";
+//			
+//			return u;
+//		}
 		step(p);
 
 		// 3단계
@@ -76,6 +76,12 @@ public class KakaoBlindRecruitment7 { // 괄호 변환
 	}
 
 	private static boolean isPair(String p) {
+		// 1단계
+		if (p.length() == 0) {
+			u = "";
+
+			return u;
+		}
 		Stack<Character> stack = new Stack<>();
 
 		for (int i = 0; i < p.length(); i++) {
