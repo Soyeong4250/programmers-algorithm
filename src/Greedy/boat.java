@@ -15,17 +15,11 @@ public class boat {
 	private static int solution(int[] people, int limit) {
 		int answer = 0;
 		
-		for (int i = 0; i < people.length; i++) {
-			boolean plus = false;
+		for (int i = 0; i < people.length-1; i++) {
 			for (int j = i+1; j < people.length; j++) {
-				if(people[i] + people[j] <= limit) {
-					plus = true;
-					answer++;
+				if(people[i] + people[j] > limit) {
 					break;
 				}
-			}
-			if(plus = false) {
-				answer++;
 			}
 			
 		}

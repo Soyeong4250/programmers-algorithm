@@ -1,4 +1,4 @@
-package CondingTest0312;
+package CodingTest0312;
 
 public class Money {
 

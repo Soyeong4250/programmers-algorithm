@@ -1,4 +1,4 @@
-package CondingTest0312;
+package CodingTest0312;
 
 import java.util.ArrayList;
 import java.util.Arrays;
