@@ -1,15 +1,25 @@
 package DFSBFS;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class network { // 네트워크
 
 	public static void main(String[] args) {
-		int n = 3;  // 컴퓨터의 개수
-		int[][] computers = { { 1, 1, 0 }, { 1, 1, 0 }, { 0, 0, 1 } };
+//		int n = 3;  // 컴퓨터의 개수
+//		int[][] computers = { { 1, 1, 0 }, { 1, 1, 0 }, { 0, 0, 1 } };
 //		int[][] computers = {{1, 1, 0}, {1, 1, 1}, {0, 1, 1}};
+		
+//		int n = 4;
+//		int[][] computers = {{1, 1, 0, 0}, {1, 1, 0, 0}, {0, 0, 1, 1}, {0, 0, 1, 1}};
+//		int[][] computers = {{1, 0, 0, 0}, {0, 1, 0, 0}, {0, 0, 1, 0}, {0, 0, 0, 1}};
+//		int[][] computers = {{1, 0, 1, 0}, {0, 1, 0, 0}, {1, 0, 1, 0}, {0, 0, 0, 1}};
+//		int[][] computers = {{1, 1, 1, 0}, {1, 1, 0, 0}, {1, 0, 1, 1}, {0, 0, 1, 1}};
 
+		int n = 5;
+//		int[][] computers = {{1, 0, 0, 0, 0}, {0, 1, 1, 0, 0}, {0, 1, 1, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 0, 0, 1}};
+		int[][] computers = {{1, 0, 0, 0, 0}, {0, 1, 0, 0, 0}, {0, 0, 1, 0, 0}, {0, 0, 0, 1, 0}, {0, 0, 0, 0, 1}};
+		
+		
 		System.out.println(solution(n, computers));
 
 	}
@@ -32,6 +42,7 @@ public class network { // 네트워크
 			}
 		}
 		
+		// 부모 개수 구하기
 		HashMap<Integer, Integer> hash = new HashMap<>();
 		for (int i = 0; i < parents.length; i++) {
 			hash.put(parents[i], hash.getOrDefault(parents[i], 0)+1);
