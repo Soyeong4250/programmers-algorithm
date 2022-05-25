@@ -13,10 +13,9 @@ public class greatestCommonDivisorAndLeastCommonMultiple { // 최대공약수와
 		int[] answer = {};
 		
 		// 유클리드 호제법 (n을 m으로 나눈 나머지가 0보다 클 때까지 반복)
-		int r = 0;
 		if(n < m) {
-			while(r!=0) {
-				r = m%n;
+			while(!=0) {
+				int r = m%n;
 			}
 		}
 		
