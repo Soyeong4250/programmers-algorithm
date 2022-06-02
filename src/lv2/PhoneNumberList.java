@@ -31,17 +31,31 @@ public class PhoneNumberList { // 전화번호 목록
 		// 확인
 		System.out.println(Arrays.toString(phone_book));
 		
+//		for (int i = 0; i < phone_book.length-1; i++) {
+//			for (int j = i+1; j < phone_book.length; j++) {
+//				if(phone_book[i].charAt(0) != phone_book[j].charAt(0)) {
+//					continue;
+//				}
+//				if(phone_book[i].equals(phone_book[j].substring(0, phone_book[i].length()))) {
+//					return false;
+//				}
+//			}
+//		}
+		
+		
+//		for (int i = 0; i < phone_book.length-1; i++) {
+//			if(phone_book[i+1].startsWith(phone_book[i])) {
+//				return false;
+//			}
+//		}
+		
 		for (int i = 0; i < phone_book.length-1; i++) {
 			for (int j = i+1; j < phone_book.length; j++) {
-				if(phone_book[i].charAt(0) != phone_book[j].charAt(0)) {
-					continue;
-				}
-				if(phone_book[i].equals(phone_book[j].substring(0, phone_book[i].length()))) {
+				if(phone_book[i+1].startsWith(phone_book[i])) {
 					return false;
 				}
 			}
 		}
-		
 		return true;
 	}
 
