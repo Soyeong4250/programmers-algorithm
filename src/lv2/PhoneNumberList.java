@@ -15,15 +15,13 @@ public class PhoneNumberList { // 전화번호 목록
 	}
 
 	private static boolean solution(String[] phone_book) {
-//		boolean answer = true;
-		
 //		System.out.println(Arrays.toString(phone_book));
 		// 길이 짧은 순으로 정렬
 //		Arrays.sort(phone_book, new Comparator<String>() {
 //			@Override
 //			public int compare(String o1, String o2) {
 //				
-//				return o1 - o2;
+//				return o1.length() - o2.length();
 //			}
 //		});
 		
@@ -33,9 +31,6 @@ public class PhoneNumberList { // 전화번호 목록
 		
 //		for (int i = 0; i < phone_book.length-1; i++) {
 //			for (int j = i+1; j < phone_book.length; j++) {
-//				if(phone_book[i].charAt(0) != phone_book[j].charAt(0)) {
-//					continue;
-//				}
 //				if(phone_book[i].equals(phone_book[j].substring(0, phone_book[i].length()))) {
 //					return false;
 //				}
@@ -43,19 +38,19 @@ public class PhoneNumberList { // 전화번호 목록
 //		}
 		
 		
-//		for (int i = 0; i < phone_book.length-1; i++) {
-//			if(phone_book[i+1].startsWith(phone_book[i])) {
-//				return false;
-//			}
-//		}
-		
 		for (int i = 0; i < phone_book.length-1; i++) {
-			for (int j = i+1; j < phone_book.length; j++) {
-				if(phone_book[i+1].startsWith(phone_book[i])) {
-					return false;
-				}
+			if(phone_book[i+1].startsWith(phone_book[i])) {
+				return false;
 			}
 		}
+		
+//		for (int i = 0; i < phone_book.length-1; i++) {
+//			for (int j = i+1; j < phone_book.length; j++) {
+//				if(phone_book[i+1].startsWith(phone_book[i])) {
+//					return false;
+//				}
+//			}
+//		}
 		return true;
 	}
 
