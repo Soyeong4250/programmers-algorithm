@@ -1,4 +1,4 @@
-package DFSBFS;
+package lv2;
 
 public class targetNum {  // 타겟 넘버
 	static int cnt = 0;

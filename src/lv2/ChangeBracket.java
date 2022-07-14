@@ -1,7 +1,5 @@
 package lv2;
 
-import java.util.Stack;
-
 public class ChangeBracket { // 괄호 변환
 
 	public static void main(String[] args) {
