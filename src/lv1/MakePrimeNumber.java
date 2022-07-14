@@ -14,40 +14,38 @@ public class MakePrimeNumber {  // 소수 만들기
 	private static int solution(int[] nums) {
 		int answer = 0;
 		
-		if(dfs(nums, new boolean[nums.length], 0, 0, 0)) {
-			answer++;
-		}
+		answer = dfs(nums, new boolean[nums.length], 0, 0, 0);
 		
 		return answer;
 	}
 	
-	private static boolean dfs(int[] nums, boolean[] v, int idx, int cnt, int sum) {
+	private static int dfs(int[] nums, boolean[] v, int idx, int cnt, int sum) {
 		if(cnt == 3) {
 			System.out.println(Arrays.toString(v));
 			System.out.println(sum);
 			if(isPrime(sum)) {
 				System.out.println(sum + "은 소수입니다");
-				return true;
+				return 1;
 			}
-			return false;
+			return 0;
 		}
 		
 		if(idx == nums.length) {
-			return false;
+			return 0;
 		}
 		
+		int p = 0;
 		for (int i = idx; i < nums.length; i++) {
 			if(v[i] == true) {
 				continue;
 			}
 			v[i] = true;
-			System.out.println(i + "선택");
-			dfs(nums, v, idx+=1, cnt+=1, sum+=nums[i]);
-			System.out.println(i + "되돌려놓기");
+			System.out.println("i = " + i);
+			p += dfs(nums, v, i+1, cnt+1, sum+nums[i]);
 			v[i] = false;
 		}
 		
-		return false;
+		return p;
 	}
 	
 	private static boolean isPrime(int n) {
@@ -57,7 +55,6 @@ public class MakePrimeNumber {  // 소수 만들기
 				return false;
 			}
 		}
-		
 		return true;
 	}
 
