@@ -3,10 +3,10 @@ package SkillCheck1;
 public class Solution2 {
 
 	public static void main(String[] args) {
-//		int a = 5;
-//		int b = 24;
 		int a = 5;
-		int b = 25;
+		int b = 24;
+//		int a = 5;
+//		int b = 25;
 		
 		
 		System.out.println(solution(a, b));
