@@ -21,14 +21,11 @@ public class Budget { // 예산
 		Arrays.sort(d);
 		System.out.println(Arrays.toString(d));
 		
-		boolean[] v = new boolean[d.length];
-		
-		for(int i=0; i<d.length; i++) {
-			if(v[i] == false) {
-				
-			}
+		for (int i = 0; i < d.length; i++) {
+			if(budget-d[i] < 0) break;
+			budget -= d[i];
+			answer++;
 		}
-		
 		
 		return answer;
 	}
