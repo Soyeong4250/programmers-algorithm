@@ -13,28 +13,29 @@ public class MaxNumber {  // 가장 큰 수
 	}
 	
     private static String solution(int[] numbers) {
-        max = "0";
-        permutation(numbers, new boolean[numbers.length], "", 0);
-
-        return max;
-    }
-    
-    static String max;
-    private static void permutation(int[] numbers, boolean[] v, String num, int cnt) {
-        if(cnt == numbers.length) {
-            if(Integer.parseInt(max) < Integer.parseInt(num)) {
-                max = num;
-            }
-            return;
-        }
-        
-        for(int i=0; i<numbers.length; i++) {
-         if(!v[i]) {
-             v[i] = true;
-             permutation(numbers, v, num + String.valueOf(numbers[i]), cnt+1);
-             v[i] = false;
-          }
-        }
+    	String[] arr = new String[numbers.length];
+    	
+    	for (int i = 0; i < arr.length; i++) {
+			arr[i] = String.valueOf(numbers[i]);
+		}
+    	
+    	Arrays.sort(arr, new Comparator<String>() {
+    		@Override
+    		public int compare(String o1, String o2) {
+    			return ((o2+o1).compareTo(o1+o2));
+    		}
+    	});
+    	
+//    	System.out.println(Arrays.toString(arr));
+    	if(arr[0].equals("0")) {
+    		return "0";
+    	}
+    	
+    	String answer = "";
+    	for(String str:arr) {
+    		answer += str;
+    	}
+    	return answer;
     }
 
 }
