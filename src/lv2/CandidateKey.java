@@ -53,20 +53,26 @@ public class CandidateKey { // 후보키
 					System.out.println("key는 " + key);
 					boolean flag = false;
 					for(String k : key) {  // 후보키 리스트에 있는 인덱스를 포함한다면 인덱스 추가x (최소성 만족x)
+						System.out.println("k는 " + k);
 						String[] arr = k.split(" ");
 						for(int i=0; i<arr.length; i++) {
-							if(!candi.matches(".*" + arr[i] + ".*")) {
-								System.out.println(candi + "에 " + arr[i] +" 포함안됨");
+							if(candi.matches(".*" + arr[i] + ".*")) {
+								System.out.println(arr[i] + "포함");
+								continue;
+							} else {
 								flag = true;
 								break;
-							}else {
-								flag = false;
 							}
 						}
 						
+						if(!flag) {
+							System.out.println("최소성 불만족");
+							break;
+						}
 					}
 					if(flag) {
-						key.add(candi.trim());
+						System.out.println("최소성 만족");
+						key.add(candi);
 					}
 				}
 			}
