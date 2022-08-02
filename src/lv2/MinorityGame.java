@@ -38,7 +38,7 @@ public class MinorityGame { // N진수 게임
 		while (answer.toString().length() < t) {
 //			System.out.println(idx);	
 			String str = sb.toString().substring(idx, idx + 1);
-			if (str.matches("[a-z]")) {
+			if (str.matches("[a-f]")) {
 				answer.append(sb.toString().substring(idx, idx + 1).toUpperCase());
 			} else {
 				answer.append(sb.toString().substring(idx, idx + 1));
