@@ -1,5 +1,8 @@
 package lv2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StandingLine { // 줄 서는 방법
 
 	public static void main(String[] args) {
@@ -11,27 +14,17 @@ public class StandingLine { // 줄 서는 방법
 
 	private static int[] solution(int n, long k) {
 		int[] answer = new int[n];
+		List<String> list = new ArrayList<>();
+		int factorial = 1;
 		
-		// 1. 배열 입력
-		int[] num = new int[n];
-		for(int i=1; i <= n; i++) {
-			num[i-1] = i;
+		// 1. n팩토리얼 구하기
+		for(int i = 1; i <= n; i++) {
+			factorial *= i;
 		}
 		
-		int idx = 0;
-		int m = 1;
-		while(m < k) {
-			idx++;
-			m *= idx;
-		}
+		long cnt = k; 
+		while()
 		
-		k -= m;  // 남은 조합의 횟수
-		for(int i = 0 ; i < n - idx; i++) {
-			answer[i] = i+1;
-		}
-		
-		
-		return answer;
 	}
 
 }
