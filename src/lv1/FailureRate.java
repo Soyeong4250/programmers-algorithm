@@ -1,5 +1,9 @@
 package lv1;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+
 public class FailureRate { // 실패율
 
 	public static void main(String[] args) {
@@ -11,11 +15,26 @@ public class FailureRate { // 실패율
 		System.out.println(solution(N, stages));
 	}
 
-	private static char[] solution(int n, int[] stages) {
+	static class Rate {
+		int 
+	}
+	private static int[] solution(int N, int[] stages) {
+		// 실패율 = 스테이지에 도달했으나 아직 클리어하지 못한 플레이어의 수 / 스테이지에 도달한 플레이어 수
+		int[] answer = new int[N];
 		
+		HashMap<Integer, Integer> hash = new HashMap<>();
+		int total = stages.length;
+		for(int i=0; i<stages.length; i++) {
+			hash.put(stages[i], hash.getOrDefault(stages[i], 0) + 1);
+		}
 		
+//		System.out.println(hash);
 		
-		return null;
+		for(int key:hash.keySet()) {
+			
+		}
+		
+		return answer;
 	}
 
 }
