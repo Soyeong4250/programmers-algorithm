@@ -23,7 +23,7 @@ public class Joystick {  // 조이스틱
 		
 //		System.out.println(Arrays.toString(result));
 		
-		int idx = 0;
+		int idx = 0;  
 		while(true) {
 			System.out.println("answer : " + answer);
 			

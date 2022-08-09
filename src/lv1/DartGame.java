@@ -3,7 +3,7 @@ package lv1;
 import java.util.List;
 import java.util.ArrayList;
 
-public class DartGame {  // 다트 게임
+public class DartGame {  // 다트 게임 
 
 	public static void main(String[] args) {
 //		String dartResult = "1S2D*3T";
