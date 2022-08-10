@@ -43,6 +43,8 @@ public class Joystick {  // 조이스틱
 			if(func(result, name)) {  // 동일 문자라면 멈추기
 				break;
 			}
+			
+//			System.out.println(result);
 		}
 		
 		return answer;
