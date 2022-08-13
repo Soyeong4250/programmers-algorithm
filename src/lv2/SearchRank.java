@@ -1,5 +1,8 @@
 package lv2;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class SearchRank { // 순위 검색
@@ -42,20 +45,34 @@ public class SearchRank { // 순위 검색
     	
     	Info[] people = new Info[info.length];
     	
-    	for (int i = 0; i < query.length; i++) {
+    	for (int i = 0; i < info.length; i++) {
 			StringTokenizer st = new StringTokenizer(info[i]);
-			while(st.hasMoreTokens()) {
-				if(st.nextToken().equals("and")) {
-					continue;
-				}else {
-					Info.lang
+			Info p = new Info(st.nextToken(), st.nextToken(), st.nextToken(), st.nextToken(), Integer.parseInt(st.nextToken()));
+			people[i] = p;
+		}
+    
+//    	String[] arr = query[0].split(" and | ");
+
+    	List<Info> list = new ArrayList<>();
+    	for (int i = 0; i < query.length; i++) {
+			String[] arr = query[i].split(" and | ");
+			Info q = new Info(arr[0], arr[1], arr[2], arr[3], Integer.parseInt(arr[4]));
+			
+			list.add(q);
+		}
+    	
+    	for (int i=0; i<list.size(); i++) {
+    		Info q = list.get(i);
+			for (int j = 0; j < people.length; j++) {
+				if((q.lang.equals("-") || q.lang.equals(people[j].lang)) && (q.job.equals("-") || q.job.equals(people[j].job)) && 
+						(q.exp.equals("-") || q.exp.equals(people[j].exp)) && (q.food.equals("-") || q.food.equals(people[j].food)) && q.score <= people[j].score) {
+					answer[i]++;
 				}
 			}
-			
 		}
     	
     	
-    	
+    	System.out.println(Arrays.toString(answer));
     	return answer;
     }
 
