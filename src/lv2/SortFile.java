@@ -55,14 +55,14 @@ public class SortFile { // [3차] 파일명 정렬
          // Number 찾기
          sb = new StringBuilder();
          for (int j = idx; j < files[i].length(); j++) {
-        	 idx = j;
+
             if(!Character.isDigit(files[i].charAt(j))) {  // 숫자가 아니라면
-//               idx = j;  // 현재 인덱스 종료
+               idx = j;  // 현재 인덱스 종료
                break;  // number 찾는 반복문 종료
             }
             sb.append(files[i].charAt(j));
-            if(sb.toString().length() == 5 || j == files[i].length()-1) {  // 마지막 인덱스이므로 종료
-//               idx = j;  // 현재 인덱스 종료
+            if(j == files[i].length()-1) {  // 마지막 인덱스이므로 종료
+               idx = j;  // 현재 인덱스 종료
                break;
             }
          }
