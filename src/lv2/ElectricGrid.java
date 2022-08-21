@@ -16,6 +16,11 @@ public class ElectricGrid {  // 전력망을 둘로 나누기
 	private static int solution(int n, int[][]wires) {
 		int answer = -1;
 		
+		for (int i = 0; i < wires.length; i++) {
+			for (int j = 0; j < wires[i].length; j++) {
+				System.out.println("");
+			}
+		}
 		
 		
 		return answer;
