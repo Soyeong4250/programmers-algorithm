@@ -57,7 +57,7 @@ public class QueueSum {  // 두 큐 합 같게 먼둘기
 			q2Sum += a;
 			q2Sum -= b;
 			result++;
-//			System.out.println(q1Sum + ", " + q2Sum);
+			System.out.println(q1Sum + ", " + q2Sum);
 		}
 		
 		return result;
