@@ -39,7 +39,7 @@ public class QueueSum {  // 두 큐 합 같게 먼둘기
 		}
 		
 		while(true) {
-			if(q1Sum == sum/2 && q2Sum == sum/2) {
+			if(q1Sum == sum/(long)2 && q2Sum == sum/(long)2) {
 				break;
 			}
 			
