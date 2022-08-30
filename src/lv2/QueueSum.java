@@ -15,6 +15,10 @@ public class QueueSum {  // 두 큐 합 같게 먼둘기
 		int[] queue1 = {1, 1};
 		int[] queue2 = {1, 5};
 		
+//		int[] queue1 = {1, 1, 1, 1, 1};
+//		int[] queue2 = {1, 1, 1, 9, 1};
+		// result : 12
+
 		System.out.println(solution(queue1, queue2));
 	}
 
@@ -24,42 +28,52 @@ public class QueueSum {  // 두 큐 합 같게 먼둘기
 		Queue<Integer> q1 = new LinkedList<>();
 		Queue<Integer> q2 = new LinkedList<>();
 		
+		
 		long sum = 0;
-		long q1Sum = 0;
-		long q2Sum = 0;
-		for(int i=0; i<queue1.length; i++) {
-			sum += queue1[i];
-			q1Sum += queue1[i];
+		long sum1 = 0;
+		long sum2 = 0;
+		
+		for (int i = 0; i < queue2.length; i++) {
 			q1.add(queue1[i]);
-		}
-		for(int i=0; i<queue2.length; i++) {
-			sum += queue2[i];
-			q2Sum += queue2[i];
+			sum += queue1[i];
+			sum1 += queue1[i];			
+			
 			q2.add(queue2[i]);
+			sum += queue2[i];
+			sum2 += queue2[i];
 		}
 		
-		while(true) {
-			if(q1Sum == sum/(long)2 && q2Sum == sum/(long) 2) {
-				break;   
-			}
-			
-			if(result >= q1.size()) {
-				result = -1;
+		long half = sum/2;
+		boolean same = true;
+		
+		while(sum1 != half || sum2 != half) {
+			if(result > queue1.length*3) {
+				same = false;
 				break;
 			}
 			
-			int a = q1.poll();
-			int b = q2.poll();
-			q1.add(b);
-			q2.add(a);
-			q1Sum += b;
-			q1Sum -= a;
-			q2Sum += a;
-			q2Sum -= b;
+			if(!q1.isEmpty() && sum1 > sum2) { // sum1이 sum2보다 크다면
+				int num = q1.poll();
+				q2.add(num);
+				sum1 -= num;
+				sum2 += num;
+			} else if(!q2.isEmpty() && sum1 < sum2){  // sum2가 sum1보다 크다면
+				int num = q2.poll();
+				q1.add(num);
+				sum2 -= num;
+				sum1 += num;	
+			}
 			result++;
-			System.out.println(q1Sum + ", " + q2Sum);
+			System.out.println(q1);
+			System.out.println(q2);
+			System.out.println(result);
+			System.out.println("sum1 : " + sum1 + "sum2 : " + sum2);
 		}
 		
+		if(!same) {
+			result = -1;
+		}
+			
 		return result;
 	}
 
