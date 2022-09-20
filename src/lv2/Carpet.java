@@ -22,10 +22,10 @@ public class Carpet {  // 카펫
 		int brown = 24;
 		int yellow = 24;
 		
-		System.out.println(solution(brown, yellow));
+		System.out.println(Arrays.toString(solution(brown, yellow)));
 	}
 	
-	public static int[] solution(int brown, int yellow) {
+	private static int[] solution(int brown, int yellow) {
 		int[] answer = new int[2];
 		ArrayList<Info> info = new ArrayList<>();
 		

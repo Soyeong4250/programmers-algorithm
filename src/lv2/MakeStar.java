@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 
 public class MakeStar {  // 교점에 별 만들기
 
-	public static void main(String{} args) {
+	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		
 		int[][] line = {{2, -1, 4}, {-2, -1, 4}, {0, -1, 1}, {5, -8, -12}, {5, 8, 12}};
