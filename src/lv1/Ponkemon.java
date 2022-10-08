@@ -2,7 +2,7 @@ package lv1;
 
 import java.util.HashSet;
 
-public class Poneketmon {  // 폰켓몬
+public class Ponkemon {  // 폰켓몬
 
 	public static void main(String[] args) {
 //		int[] nums = {3,1,2,3};
