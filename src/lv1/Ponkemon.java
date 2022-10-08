@@ -1,8 +1,8 @@
 package lv1;
 
-import java.util.HashMap;
+import java.util.HashSet;
 
-public class Ponketmon {  // 폰켓몬
+public class Poneketmon {  // 폰켓몬
 
 	public static void main(String[] args) {
 //		int[] nums = {3,1,2,3};
@@ -13,6 +13,27 @@ public class Ponketmon {  // 폰켓몬
 	}
 
 	private static int solution(int[] nums) {
+		int answer = 0;
+		
+		int n = nums.length/2;
+		HashSet<Integer> hash = new HashSet<>();
+		for (int i = 0; i < nums.length; i++) {
+			hash.add(nums[i]);
+		}
+		
+//		System.out.println(hash);
+		
+		if(hash.size() >= n) {
+			answer = n;
+		} else {
+			answer = hash.size();
+		}
+		
+		return answer;
+		
+	}
+
+	/*private static int solution(int[] nums) {
 		int answer = 0;
 		
 		int n = nums.length/2;
@@ -30,6 +51,8 @@ public class Ponketmon {  // 폰켓몬
 		}
 		
 		return answer;
-	}
+	}*/
+	
+	
 
 }
