@@ -3,19 +3,21 @@ package lv3;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
 public class BestAlbum {  // 베스트 앨범
 
 	public static void main(String[] args) {
+		BestAlbum bestAlbum = new BestAlbum();
 		String[] genres = {"classic", "pop", "classic", "classic", "pop"};
 		int[] plays = {500, 600, 150, 800, 2500};
 
-		System.out.println(solution(genres, plays));
+		System.out.println(bestAlbum.solution(genres, plays));
 	}
 
-	private static int[] solution(String[] genres, int[] plays) {
+	private int[] solution(String[] genres, int[] plays) {
 		// 1. 속한 노래가 가장 많은 장르
 		HashMap<String, Integer> map = new HashMap<>();
 		
@@ -23,11 +25,13 @@ public class BestAlbum {  // 베스트 앨범
 			String genre = genres[i];
 			map.put(genre, map.getOrDefault(genre, 0) + plays[i]);
 		}
+		
+		System.out.println(map);
 
 		// 확인
 		System.out.println("====================1=====================");
 		for (String key : map.keySet()) {
-			System.out.println(String.format("�帣�� : %s, ���Ƚ��: %d", key, map.get(key)));
+			System.out.println(String.format("장르명 : %s, 재생횟수: %d", key, map.get(key)));
 		}System.out.println();
 
 		List<String> listKeySet = new ArrayList<>(map.keySet());
@@ -79,5 +83,6 @@ public class BestAlbum {  // 베스트 앨범
 		System.out.println(Arrays.toString(result));
 		return result;
 	}
+	
 
 }
