@@ -3,7 +3,7 @@ package lv1;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class twoPlus { // 두 개 뽑아서 더하기
+public class TwoPlus { // 두 개 뽑아서 더하기
 
 	public static void main(String[] args) {
 //		int[] numbers = { 2, 1, 3, 4, 1 };

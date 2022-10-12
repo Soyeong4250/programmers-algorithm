@@ -3,7 +3,7 @@ package lv1;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class marathon {  // 완주하지 못한 선수
+public class Marathon {  // 완주하지 못한 선수
 	public static void main(String[] args) {
 		// BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		

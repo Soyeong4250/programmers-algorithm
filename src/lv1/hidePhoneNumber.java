@@ -1,6 +1,6 @@
 package lv1;
 
-public class hidePhoneNumber { // 핸드폰 번호 가리기
+public class HidePhoneNumber { // 핸드폰 번호 가리기
 
 	public static void main(String[] args) {
 		String phone_number = "01033334444";

@@ -1,6 +1,6 @@
 package lv1;
 
-public class subaksu {  // 수박수박수박수박수박수?
+public class Subaksu {  // 수박수박수박수박수박수?
 
 	public static void main(String[] args) {
 		int n = 3;

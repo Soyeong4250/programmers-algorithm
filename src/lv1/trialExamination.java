@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class trialExamination { // 모의고사
+public class TrialExamination { // 모의고사
 
 	public static void main(String[] args) {
 //		int[] answers = { 1, 2, 3, 4, 5 };

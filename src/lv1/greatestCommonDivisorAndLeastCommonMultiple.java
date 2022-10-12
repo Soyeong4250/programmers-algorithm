@@ -1,6 +1,6 @@
 package lv1;
 
-public class greatestCommonDivisorAndLeastCommonMultiple { // 최대공약수와 최소공배수
+public class GreatestCommonDivisorAndLeastCommonMultiple { // 최대공약수와 최소공배수
 
 	public static void main(String[] args) {
 		int n = 3;

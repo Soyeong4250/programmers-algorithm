@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 
-public class sortString {  // 문자열 내 마음대로 정렬하기
+public class SortString {  // 문자열 내 마음대로 정렬하기
 
 	public static void main(String[] args) {
 //		String[] strings = {"sun", "bed", "car"};

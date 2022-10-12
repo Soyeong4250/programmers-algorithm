@@ -2,7 +2,7 @@ package lv2;
 
 import java.util.HashMap;
 
-public class camouflage { // 위장
+public class Camouflage { // 위장
 
 	public static void main(String[] args) {
 		String[][] clothes = { { "yellowhat", "headgear" }, { "bluesunglasses", "eyewear" },

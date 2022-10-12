@@ -2,7 +2,7 @@ package lv1;
 
 import java.util.Arrays;
 
-public class plusOfMatrix { // 행렬의 덧셈
+public class PlusOfMatrix { // 행렬의 덧셈
 
 	public static void main(String[] args) {
 		int[][] arr1 = { { 1, 2 }, { 2, 3 } };

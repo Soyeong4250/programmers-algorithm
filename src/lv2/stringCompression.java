@@ -1,6 +1,6 @@
 package lv2;
 
-public class stringCompression { // 문자열 압축
+public class StringCompression { // 문자열 압축
 
 	public static void main(String[] args) {
 //		String s = "aabbaccc";

@@ -1,6 +1,6 @@
 package lv2;
 
-public class targetNum {  // 타겟 넘버
+public class TargetNum {  // 타겟 넘버
 	static int cnt = 0;
 	public static void main(String[] args) {
 //		int[] numbers = {1, 1, 1, 1, 1};

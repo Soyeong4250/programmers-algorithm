@@ -3,7 +3,7 @@ package lv2;
 import java.util.Arrays;
 import java.util.Stack;
 
-public class stockPrice { // 주식가격
+public class StockPrice { // 주식가격
 
 	public static void main(String[] args) {
 		int[] prices = { 1, 2, 3, 2, 3 };

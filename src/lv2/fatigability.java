@@ -1,6 +1,6 @@
 package lv2;
 
-public class fatigability { // 피로도
+public class Fatigability { // 피로도
 
 	public static void main(String[] args) {
 //		int k = 80;
