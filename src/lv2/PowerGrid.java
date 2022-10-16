@@ -1,21 +1,20 @@
 package lv2;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
 public class PowerGrid { // 전력망을 둘로 나누기
 
 	public static void main(String[] args) {
-		int n = 9;
-		int[][] wires = { { 1, 3 }, { 2, 3 }, { 3, 4 }, { 4, 5 }, { 4, 6 }, { 4, 7 }, { 7, 8 }, { 7, 9 } };
+//		int n = 9;
+//		int[][] wires = { { 1, 3 }, { 2, 3 }, { 3, 4 }, { 4, 5 }, { 4, 6 }, { 4, 7 }, { 7, 8 }, { 7, 9 } };
 
 //		int n = 4;
 //		int[][] wires = {{1, 2}, {2, 3}, {3, 4}};
 
-//		int n = 7;
-//		int[][] wires = {{1, 2}, {2, 7}, {3, 7}, {3, 4}, {4, 5}, {6, 7}};
+		int n = 7;
+		int[][] wires = {{1, 2}, {2, 7}, {3, 7}, {3, 4}, {4, 5}, {6, 7}};
 		PowerGrid powerGrid = new PowerGrid();
 
 		System.out.println(powerGrid.solution(n, wires));
@@ -31,6 +30,10 @@ public class PowerGrid { // 전력망을 둘로 나누기
 			adj[wires[i][0]][wires[i][1]] = adj[wires[i][1]][wires[i][0]] = 1;  // 양방향
 		}
 		
+		for (int i = 0; i < adj.length; i++) {
+			System.out.println(Arrays.toString(adj[i]));			
+		}
+		
 		// 하나씩 끊어보기
 		for (int i = 0; i < wires.length; i++) {
 			int sNode = wires[i][0];
@@ -40,7 +43,9 @@ public class PowerGrid { // 전력망을 둘로 나누기
 			adj[sNode][eNode] = 0;
 			adj[eNode][sNode] = 0;
 			
-			answer = Math.min(answer, bfs(adj, new boolean[n+1], 1, n));
+			// answer = Math.min(answer, bfs(adj, new boolean[n+1], 1, n));
+			int nodeCnt = dfs(adj, new boolean[n+1], 1);
+			answer = Math.min(answer, (int)Math.abs(nodeCnt-(n-nodeCnt)));
 			
 			// 연결된 전력망 연결
 			adj[sNode][eNode] = 1;
@@ -48,6 +53,19 @@ public class PowerGrid { // 전력망을 둘로 나누기
 		}
 		
 		return answer;
+	}
+
+	private int dfs(int[][] adj, boolean[] v, int sNode) {
+		int cnt = 1;  // 현재 노드
+		v[sNode] = true;
+		for (int i = 0; i < adj.length; i++) {
+			if(!v[i] && adj[sNode][i] == 1) {
+				cnt += dfs(adj, v, i);
+			}
+		}
+//		System.out.println(Arrays.toString(v));
+//		System.out.println(cnt);
+		return cnt;
 	}
 
 	private int bfs(int[][] adj, boolean[] v, int sNode, int n) {
@@ -70,6 +88,7 @@ public class PowerGrid { // 전력망을 둘로 나누기
 		
 		return (int)Math.abs(cnt - (n - cnt));
 	}
+	
 	
 
 }
