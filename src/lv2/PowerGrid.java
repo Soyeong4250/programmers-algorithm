@@ -24,14 +24,10 @@ public class PowerGrid { // 전력망을 둘로 나누기
 	private int solution(int n, int[][] wires) {
 		int answer = Integer.MAX_VALUE;
 		
-		int[][] adj = new int[n+1][n+1];  // 인덱스는 0부터 시작, 전력망은 1부터 시작하므로 인접행렬 길이 +1
+		int[][] adj = new int[n+1][n+1];  // 인덱스는 0부터 시작, 송전탑은 1부터 시작하므로 인접행렬 길이 +1
 		
 		for (int i = 0; i < wires.length; i++) {
 			adj[wires[i][0]][wires[i][1]] = adj[wires[i][1]][wires[i][0]] = 1;  // 양방향
-		}
-		
-		for (int i = 0; i < adj.length; i++) {
-			System.out.println(Arrays.toString(adj[i]));			
 		}
 		
 		// 하나씩 끊어보기
@@ -39,7 +35,7 @@ public class PowerGrid { // 전력망을 둘로 나누기
 			int sNode = wires[i][0];
 			int eNode = wires[i][1];
 			
-			// 연결된 전력망 끊기
+			// 연결된 송전탑 끊기
 			adj[sNode][eNode] = 0;
 			adj[eNode][sNode] = 0;
 			
@@ -47,7 +43,7 @@ public class PowerGrid { // 전력망을 둘로 나누기
 			int nodeCnt = dfs(adj, new boolean[n+1], 1);
 			answer = Math.min(answer, (int)Math.abs(nodeCnt-(n-nodeCnt)));
 			
-			// 연결된 전력망 연결
+			// 끊었던 송전탑 연결
 			adj[sNode][eNode] = 1;
 			adj[eNode][sNode] = 1;
 		}
@@ -56,7 +52,7 @@ public class PowerGrid { // 전력망을 둘로 나누기
 	}
 
 	private int dfs(int[][] adj, boolean[] v, int sNode) {
-		int cnt = 1;  // 현재 노드
+		int cnt = 1;  // 현재 송전탑
 		v[sNode] = true;
 		for (int i = 0; i < adj.length; i++) {
 			if(!v[i] && adj[sNode][i] == 1) {
@@ -72,7 +68,7 @@ public class PowerGrid { // 전력망을 둘로 나누기
 		Queue<Integer> q = new LinkedList<>();
 		
 		q.offer(sNode);
-		int cnt = 1;  // 개수 1 더하기(1번 노드)
+		int cnt = 1;  // 개수 1 더하기(1번 송전탑)
 		
 		while(!q.isEmpty()) {
 			int node = q.poll();
