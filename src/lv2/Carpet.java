@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Carpet {  // 카펫
-	static class Info {
+	class Info {
 		int height;
 		int width;
 		
@@ -22,10 +22,11 @@ public class Carpet {  // 카펫
 		int brown = 24;
 		int yellow = 24;
 		
-		System.out.println(Arrays.toString(solution(brown, yellow)));
+		Carpet carpet = new Carpet();
+		System.out.println(Arrays.toString(carpet.solution(brown, yellow)));
 	}
 	
-	private static int[] solution(int brown, int yellow) {
+	private int[] solution(int brown, int yellow) {
 		int[] answer = new int[2];
 		ArrayList<Info> info = new ArrayList<>();
 		
