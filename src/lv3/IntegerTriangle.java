@@ -1,6 +1,6 @@
-package DP;
+package lv3;
 
-public class integerTriangle {
+public class IntegerTriangle {  // 정수 삼각형
 
 	public static void main(String[] args) {
 		int[][] triangle = {{7}, {3, 8}, {8, 1, 0}, {2, 7, 4, 4}, {4, 5, 2, 6, 5}};
