@@ -1,6 +1,6 @@
-package DP;
+package lv3;
 
-public class wayToSchool { // 등굣길
+public class WayToSchool { // 등굣길
 
 	public static void main(String[] args) {
 		int m = 4;
