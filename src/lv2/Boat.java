@@ -7,7 +7,9 @@ public class Boat {  // 구명보트
 	public static void main(String[] args) {  
 //		int[] people = {70, 50, 80, 50};
 //		int limit = 100;
-		int[] people = {70, 80, 50};
+//		int[] people = {70, 80, 50};
+//		int limit = 100;
+		int[] people = {30, 40, 50, 60};
 		int limit = 100;
 		
 		Boat boat = new Boat();
@@ -16,25 +18,23 @@ public class Boat {  // 구명보트
 	
 	
 	private int solution(int[] people, int limit) {
-		int answer = 1;
+		int answer = 0;
 		
 		Arrays.sort(people);
 		
 		int maxIdx = people.length-1;
 		int minIdx = 0;
-		int weight = people[maxIdx];
 		
-		while(minIdx < maxIdx) {
-			System.out.println("minIdx = " + minIdx + ", maxIdx = " + maxIdx + ", weight = " + weight + ", answer = " + answer);
-			if(weight + people[minIdx] <= limit) {
-				weight += people[minIdx];
-				minIdx++;
-				continue;
-			}
+		while(minIdx <= maxIdx) {
 			answer++;
-			maxIdx--;
-			weight = people[maxIdx];
-			System.out.println("weight 변경 = " + weight);
+			System.out.println("minIdx = " + minIdx + ", maxIdx = " + maxIdx + ", answer = " + answer);
+			if(people[maxIdx] + people[minIdx] <= limit) {
+				System.out.println("people[minIdx] = " + people[minIdx]);
+				minIdx++;
+				maxIdx--;
+			} else {
+				maxIdx--;
+			}
 		}
 		
 		return answer;
