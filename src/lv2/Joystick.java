@@ -1,66 +1,66 @@
 package lv2;
 
-import java.util.Arrays;
-
 public class Joystick {  // 조이스틱
 
 	public static void main(String[] args) {
 //		String name = "JEROEN";
-		String name = "JAN";
+//		String name = "JAZ";
+//		String name = "JAN";
+//		String name = "AAB";
+		String name = "ABABAAAAABA";
 		
-		System.out.println(solution(name));
+		Joystick joystick = new Joystick();
+		System.out.println(joystick.solution(name));
 	}
 
-	private static int solution(String name) {
-		int answer = 0;
-		
-		int[] dir = {-1, 1, -1, 1};  // 방향 : ^ v < >
-		
-		int[] result = new int[name.length()];  // 만들어야 하는 문자열 (아스키코드 담기)
-		for(int i=0; i<result.length; i++) {
-			result[i] = (int)name.charAt(i);
+	private int solution(String name) {
+		int startA = -1;
+		int endA = -1;
+		boolean continuous = true;
+		char[] alphabet = new char[name.length()];
+		for (int i = 0; i < alphabet.length; i++) {
+			alphabet[i] = name.charAt(i);
+			if(startA == -1 && alphabet[i] == 'A') {
+				startA = i-1;
+			}else if(startA != -1 && endA == -1 && alphabet[i] != 'A') {
+				endA = i-1;
+			} else if(startA != -1 && endA != -1 && alphabet[i] == 'A') {
+				continuous = false;
+			}
 		}
 		
-//		System.out.println(Arrays.toString(result));
-		
-		int idx = 0;  
-		while(true) {
-			System.out.println("answer : " + answer);
-			
-			if(result[idx] == 65) {
-				if(0 <= idx-2) {
-					idx -= 2;
-				} else {
-					idx = result.length-1 + (idx-2);
-				}
-				answer ++;
-				continue;
-			}
-			
-			answer += Math.min(90-result[idx] + 1, result[idx] - 65);
-			idx++;
-			
-			if(func(result, name)) {  // 동일 문자라면 멈추기
-				break;
-			}
-			
-//			System.out.println(result);
+		int moveCnt = -1; 
+		if(continuous) {
+			moveCnt = minMoveCnt(name.length() - 1, startA, endA);
+		} else {
+			moveCnt = name.length() - 1;
 		}
 		
-		return answer;
+		int changeCnt = changeAlphabet(alphabet);
+		
+//		System.out.println(changeCnt);
+		return moveCnt + changeCnt;
 	}
 
-	private static boolean func(int[] result, String name) {
-		StringBuilder sb = new StringBuilder();
-		for(int i=0; i<result.length; i++) {
-			sb.append(result[i]-'0');
+	private int minMoveCnt(int min, int startA, int endA) {
+		if(startA != -1 && endA != -1) {
+//			System.out.println(startA * 2 + min-endA);
+//			System.out.println((min-endA)*2 + startA);
+			min = Math.min(startA * 2 + min-endA, (min-endA)*2 + startA);
 		}
 		
-		if(sb.toString().equals(name)) {
-			return true;
+		return min;
+	}
+
+	private int changeAlphabet(char[] alphabet) {
+		int cnt = 0;
+		
+		for (int i = 0; i < alphabet.length; i++) {
+			cnt += Math.min(alphabet[i] - 'A', 'Z' - alphabet[i] + 1);
+//			System.out.println("cnt = " + cnt);
 		}
 		
-		return false;
+		return cnt;
 	}
 
 }
