@@ -1,6 +1,6 @@
 package Greedy;
 
-public class makeBigNumber2 { // 큰 수 만들기
+public class MakeBigNumber2 { // 큰 수 만들기
 	
 	public static void main(String[] args) {
 //		String number = "1924";

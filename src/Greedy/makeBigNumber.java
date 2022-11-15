@@ -3,7 +3,7 @@ package Greedy;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class makeBigNumber { // 큰 수 만들기
+public class MakeBigNumber { // 큰 수 만들기
 	
 	public static void main(String[] args) {
 		String number = "1924";
