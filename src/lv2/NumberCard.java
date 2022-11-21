@@ -1,7 +1,5 @@
 package lv2;
 
-import java.util.Arrays;
-
 public class NumberCard {
 
 	private int solution(int[] arrayA, int[] arrayB) {
