@@ -6,7 +6,7 @@ import java.util.List;
 
 public class RemoveMin {  // 제일 작은 수 제거하기
 	
-	public int[] solution(int[] arr) {
+	private int[] solution(int[] arr) {
 		List<Integer> answer = new ArrayList<Integer>();
 		
 		int min = Integer.MAX_VALUE;
@@ -24,7 +24,7 @@ public class RemoveMin {  // 제일 작은 수 제거하기
 		return answer.stream().mapToInt(Integer::intValue).toArray();
 	}
 	
-	public int[] solution1(int[] arr) {
+	private int[] solution1(int[] arr) {
 		int min = Arrays.stream(arr).min().getAsInt();
 		
 		return (arr.length == 1)?new int[] {-1}:Arrays.stream(arr).filter(i -> i != min).toArray();
