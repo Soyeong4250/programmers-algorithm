@@ -41,13 +41,13 @@ public class Delivery {  // 배달
 			int min = INF;
 			int node = 0;
 			
-			cnt++;
 			for (int i = 1; i < dist.length; i++) {
 				if(!v[i] && dist[i] < min) {
 					min = dist[i];
 					node = i;
 				}
 			}
+			cnt++;
 			v[node] = true;
 //			System.out.println(Arrays.toString(dist));
 			
