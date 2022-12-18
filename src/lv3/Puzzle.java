@@ -162,4 +162,38 @@ public class Puzzle {
     }
 	
 	
+=======
+public class Puzzle {
+
+	public static void main(String[] args) {
+		Puzzle main = new Puzzle();
+		
+		int[][] game_board = {{1,1,0,0,1,0}, {0,0,1,0,1,0}, {0,1,1,0,0,1}, {1,1,0,1,1,1}, {1,0,0,0,1,0}, {0,1,1,1,0,0}};
+		int[][] table = {{1,0,0,1,1,0}, {1,0,1,0,1,0}, {0,1,1,0,1,1}, {0,0,1,0,0,0}, {1,1,0,1,1,0}, {0,1,0,0,0,0}};
+//		int[][] game_board = {{1,1,0,0,1,0}, {0,0,1,0,1,0}, {0,1,1,0,0,1}, {1,1,0,1,1,1}, {1,0,0,0,1,0}, {0,1,1,1,0,0}};
+//		int[][] table = {{1,0,0,1,1,0}, {1,0,1,0,1,0}, {0,1,1,0,1,1}, {0,0,1,0,0,0}, {1,1,0,1,1,0}, {0,1,0,0,0,0}};
+		
+		System.out.println(main.solution(game_board, table));
+	}
+
+	private int solution(int[][] game_board, int[][] table) {
+		int answer = 0;
+		
+		int[] dr = {0, 1, 0, -1};  // → ↓ ← ↑
+		int[] dc = {1, 0, -1, 0};  // → ↓ ← ↑
+		
+		
+		int[][] select = new int[table.length][table[0].length];
+		// 도형 고르기
+		selectShape(table, select, 0, 0);
+		
+		
+		return answer;
+	}
+
+	private void selectShape(int[][] table, int[][] select, int i, int j) {
+		
+	}
+
+>>>>>>> Stashed changes
 }
