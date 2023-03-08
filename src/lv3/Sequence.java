@@ -1,7 +1,5 @@
 package lv3;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Sequence {  // 연속 펄스 부분 수열의 합
@@ -26,20 +24,22 @@ public class Sequence {  // 연속 펄스 부분 수열의 합
 		System.out.println(Arrays.toString(sequence2));
 		
 		long result1 = sequence1[0];
-		long sum1 = result1;
 		long result2 = sequence2[0];
-		long sum2 = result2;
+		long answer = Math.max(result1, result2);
 		
 		for (int i = 1; i < sequence.length; i++) {
 			result1 = (result1 + sequence1[i]) < sequence1[i] ? sequence1[i] : (result1 + sequence1[i]);
-			sum1 = sum1 < result1 ? result1 : sum1;
 			result2 = (result2 + sequence2[i]) < sequence2[i] ? sequence2[i] : (result2 + sequence2[i]);
-			sum2 = sum2 < result2 ? result2 : sum2;
 //			System.out.println(result1);
 //			System.out.println(result2);
+			if(answer < result1) {
+				answer = result1;
+			}else if(answer < result2) {
+				answer = result2;
+			}
 		}
 		
-		return sum1 < sum2 ? sum2 : sum1;
+		return answer;
 	}
 
 }
