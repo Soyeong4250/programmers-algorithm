@@ -19,16 +19,7 @@ public class PerformanceAssessment { // 인사고과
 		int[] wanhoScore = scores[0];
 //		System.out.println(Arrays.toString(wanhoScore));
 		
-		Arrays.sort(scores, new Comparator<int[]>(){
-			@Override
-			public int compare(int[] o1, int[] o2) {
-				if(o1[0] == o2[0]) {
-					return o1[1] - o2[1];
-				}
-				
-				return o2[0] - o1[0];
-			}
-		});
+		Arrays.sort(scores, (s1, s2) -> s1[0] == s2[0] ? s1[1] - s2[1] : s2[0] - s1[0]);
 		
 //		for (int i = 0; i < scores.length; i++) {
 //			System.out.println(Arrays.toString(scores[i]));			
