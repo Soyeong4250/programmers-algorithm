@@ -1,7 +1,6 @@
 package lv2;
 
 import java.util.Arrays;
-import java.util.Iterator;
 
 public class ExpressionOfNumber { // 수의 표현
 
@@ -11,30 +10,32 @@ public class ExpressionOfNumber { // 수의 표현
 	}
 
 	private static int solution(int n) {
-		int answer = 0;
-		int[] sum = new int[n];
-
-		sum[0] = 1;
+		int[] sum = new int[n+1];
+		
+		sum[0] = 0;
 		for (int i = 1; i < sum.length; i++) {
-			sum[i] = sum[i - 1] + (i + 1);
+			sum[i] = sum[i-1] + i;
 		}
-
-//		System.out.println(Arrays.toString(sum));
-
-		for (int i = 0; i < sum.length; i++) {
-			if (sum[i] < 15) {
-				continue;
-			} else if (sum[i] == 15) {
+		
+		System.out.println(Arrays.toString(sum));
+		
+		int answer = 0;
+		int checkIdx = 1;
+		
+		for (int i = 1; i < sum.length; i++) {
+			if(sum[i] == n) {
+				System.out.println(sum[i]);
 				answer++;
-			} else {
-				for (int j = 0; j < i; j++) {
-					if (sum[i] - sum[j] == 15) {
-//						System.out.println(i + " : " + sum[i] + ", " + j + " : " + sum[j]);
+			}else if(sum[i] > n) {
+				for (int j = checkIdx; j < i; j++) {
+					if(sum[i] - sum[j] == n) {
+						System.out.println(sum[i]);
 						answer++;
 					}
 				}
 			}
 		}
+		
 		return answer;
 	}
 
