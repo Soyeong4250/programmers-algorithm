@@ -17,22 +17,20 @@ public class ExpressionOfNumber { // 수의 표현
 			sum[i] = sum[i-1] + i;
 		}
 		
-		System.out.println(Arrays.toString(sum));
-		
+		int startIdx = 1;
+		int endIdx = 0;
 		int answer = 0;
-		int checkIdx = 1;
 		
-		for (int i = 1; i < sum.length; i++) {
-			if(sum[i] == n) {
-				System.out.println(sum[i]);
+		while(startIdx <= n && endIdx <= n) {
+			int result = sum[startIdx] - sum[endIdx];
+			
+			if(result < n) {
+				startIdx++;
+			}else if(result == n) {
 				answer++;
-			}else if(sum[i] > n) {
-				for (int j = checkIdx; j < i; j++) {
-					if(sum[i] - sum[j] == n) {
-						System.out.println(sum[i]);
-						answer++;
-					}
-				}
+				startIdx++;
+			}else {
+				endIdx++;
 			}
 		}
 		
