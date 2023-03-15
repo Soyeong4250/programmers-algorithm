@@ -17,11 +17,6 @@ public class JumpAndTeleport { // 점프와 순간이동
 	private int solution(int n) {
 		int result = 0;
 		
-		int[] memo = new int[n+1];
-		
-		memo[0] = 0;
-		memo[1] = 1;
-		
 		while(n > 1) {
 			if(n%2 != 0) {
 				n -= 1;
@@ -31,8 +26,11 @@ public class JumpAndTeleport { // 점프와 순간이동
 			}
 		}
 		
-		System.out.println(n);
-		return result + memo[n];
+		if(n <= 1) {
+			result += n;
+		}
+		
+		return result;
 	}
 
 }
