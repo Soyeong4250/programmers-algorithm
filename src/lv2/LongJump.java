@@ -13,7 +13,7 @@ public class LongJump { // 멀리뛰기
 	}
 
 	private long solution(int n) {
-		long answer = 0;
+		long answer = n;
 		
 		long first = 1;
 		long second = 2;
