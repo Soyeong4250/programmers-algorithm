@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
-public class PickTangerine { // 굴 고르기
+public class PickTangerine { // 귤 고르기
 
 	public static void main(String[] args) {
 		PickTangerine main = new PickTangerine();
