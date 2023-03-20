@@ -18,10 +18,11 @@ public class RotateBracket { // 괄호 회전하기
 	private int solution(String s) {
 		int answer = 0;
 				
+		Stack<String> bracketStack = new Stack<>();
 		for (int i = 0; i < s.length(); i++) {
 //			System.out.println(answer);
 //			System.out.println(s);
-			Stack<String> bracketStack = new Stack<>();
+			bracketStack.clear();
 			for (int j = 0; j < s.length(); j++) {
 				String bracket = s.substring(j, j+1);
 				
