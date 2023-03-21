@@ -1,10 +1,7 @@
 package lv2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class Cache { // 캐시
 
