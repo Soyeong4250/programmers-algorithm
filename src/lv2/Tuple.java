@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 
 public class Tuple { // 튜플
 
@@ -23,33 +21,25 @@ public class Tuple { // 튜플
 	}
 
 	private int[] solution(String s) {
-		s = s.substring(2, s.length()-2).replace("},{", "/");
-//		System.out.println(s);
-		String[] tupleArr = s.split("/");
+		String[] tupleArr = s.replaceAll("[{]", " ").replaceAll("[}]", " ").trim().split(" , ");
 
-		HashMap<Integer, Integer> hash = new HashMap<>();
+		HashSet<Integer> hash = new HashSet<>();
 		
-//		System.out.println(Arrays.toString(tupleArr));
+		Arrays.sort(tupleArr, (s1, s2) -> s1.length() - s2.length());		
+		System.out.println(Arrays.toString(tupleArr));
+		
+		int[] answer = new int[tupleArr.length];
+		
+		int idx = 0;
 		for (int i = 0; i < tupleArr.length; i++) {
-			String[] str = tupleArr[i].split(",");
-			for (int j = 0; j < str.length; j++) {
-				int num = Integer.parseInt(str[j].trim());
-				hash.put(num, hash.getOrDefault(num, 0) + 1);
-				
+			for (String str : tupleArr[i].split(",")) {
+				int num = Integer.parseInt(str);
+				if(hash.add(num)) {
+					answer[idx++] = num;
+				}
 			}
 		}
 		
-		List<int[]> numList = new ArrayList<int[]>();
-		for (Map.Entry<Integer, Integer> num : hash.entrySet()) {
-			numList.add(new int[]{num.getKey(), num.getValue()});
-		}
-		
-		Collections.sort(numList, (s1, s2) -> s2[1] - s1[1]);
-		
-		int[] answer = new int[numList.size()];
-		for (int i = 0; i < numList.size(); i++) {
-			answer[i] = numList.get(i)[0];
-		}
 		return answer;
 	}
 
