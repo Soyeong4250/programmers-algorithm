@@ -19,24 +19,11 @@ public class CutArr { // n^2배열 자르기
 	}
 
 	private int[] solution(int n, long left, long right) {
-		int[] numArr = new int[n*n];
+		int[] answer = new int[(int)(right - left) + 1];
 		
-		for (int i = 0; i < numArr.length; i++) {
-			numArr[i] += i%n + 1;
-//			System.out.println(Arrays.toString(numArr));
-			if(i%n == 0) {
-				for (int j = 0; j < i/n; j++) {
-					numArr[i+j] += i/n-j;
-//					System.out.println("i+j = " + (i + j));
-//					System.out.println("i/n = " + i/n);
-				}
-			}
-//			System.out.println(Arrays.toString(numArr));
+		for (long i = left; i <= right; i++) {
+			answer[(int)(i-left)] = (int)Math.max(i/n, i%n) + 1;
 		}
-		
-//		System.out.println(Arrays.toString(numArr));
-		
-		int[] answer = Arrays.copyOfRange(numArr, (int)left, (int)right+1);
 		
 		return answer;
 	}
