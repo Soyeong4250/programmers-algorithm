@@ -1,6 +1,5 @@
 package lv2;
 
-import java.util.Arrays;
 import java.util.HashSet;
 
 public class SequenceSum { // 연속 부분 수열 합의 개수
@@ -15,14 +14,14 @@ public class SequenceSum { // 연속 부분 수열 합의 개수
 	private int solution(int[] elements) {
 		HashSet<Integer> hash = new HashSet<>();
 		
-		int[] sum = new int[elements.length];
 		
-		for (int i = 0; i < sum.length; i++) {
+		for (int i = 0; i < elements.length; i++) {
+			int sum = 0;
 			for (int j = 0; j < elements.length; j++) {
-				sum[i] += elements[(i+j)%elements.length];
-				hash.add(sum[i]);
+				sum += elements[(i+j)%elements.length];
+				hash.add(sum);
 			}
-			System.out.println(hash);
+//			System.out.println(hash);
 		}
 		
 		return hash.size();
