@@ -4,8 +4,8 @@ public class BigestSquare { // 가장 큰 정사각형 찾기
 	public static void main(String[] args) {
 		BigestSquare main = new BigestSquare();
 
-//		int[][] board = { { 0, 1, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 1 }, { 0, 0, 1, 0 } };
-		int[][] board = {{0, 0, 1, 1}, {1, 1, 1, 1}};
+		int[][] board = { { 0, 1, 1, 1 }, { 1, 1, 1, 1 }, { 1, 1, 1, 1 }, { 0, 0, 1, 0 } };
+//		int[][] board = {{0, 0, 1, 1}, {1, 1, 1, 1}};
 
 		System.out.println(main.solution(board));
 	}
@@ -15,12 +15,16 @@ public class BigestSquare { // 가장 큰 정사각형 찾기
 		
 		int line = 0;
 		
+//		boolean[][] v = new boolean[board.length][board[0].length];
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
 				if(board[i][j] == 1) {
 					line = checkLine(board, i, j);
 					answer = answer < line*line ? line*line : answer;
 				}
+//				for (int k = 0; k < v.length; k++) {
+//					System.out.println(Arrays.toString(v[k]));
+//				}
 			}
 		}
 		
@@ -28,17 +32,17 @@ public class BigestSquare { // 가장 큰 정사각형 찾기
 	}
 	
 	private int checkLine(int[][] board, int sr, int sc) {
-		int row = 0;
-		int col = 0;
+		int nr = sr;
+		int nc = sc;
 		
-		while(sr + row < board.length && sc + col < board[0].length) {
-			if(board[sr+row][sc] == 0 || board[sr][sc+col] == 0) {
+		while(nr < board.length && nc < board[0].length) {
+			if(board[nr][nc] == 0) {
 				break;
 			}
-			row++;
-			col++;
+			nr++;
+			nc++;
 		}
 		
-		return row <= col ? row : col;
+		return nr-sr;
 	}
 }
