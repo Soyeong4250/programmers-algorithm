@@ -1,8 +1,5 @@
 package lv2;
 
-import java.util.Arrays;
-import java.util.Iterator;
-
 public class BigestSquare { // 가장 큰 정사각형 찾기
 	public static void main(String[] args) {
 		BigestSquare main = new BigestSquare();
