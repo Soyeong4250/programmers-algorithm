@@ -61,16 +61,16 @@ public class InstallationOfBaseStation { // 기지국 설치
 		int end = 1;
 		
 		for (int i = 0; i < stations.length; i++) {
-			end = 0 < (stations[i] - w) ? stations[i] - w : start;
-			
-			int cnt = end - start;
-			System.out.println("end = " + end);
-			System.out.println("start = " + start);
-			System.out.println("cnt = " + cnt);
-			
-			answer += cnt / (w*2+1);
-			if(cnt % (w*2+1) != 0) answer++;
-			
+			end = stations[i] - w;
+			if(start < end) {
+				int cnt = end - start;
+				System.out.println("end = " + end);
+				System.out.println("start = " + start);
+				System.out.println("cnt = " + cnt);
+				
+				answer += cnt / (w*2+1);
+				if(cnt % (w*2+1) != 0) answer++;				
+			}
 			start = stations[i] + w + 1;
 			System.out.println(start);
 		}
