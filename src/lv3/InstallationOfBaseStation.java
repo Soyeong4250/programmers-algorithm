@@ -11,9 +11,45 @@ public class InstallationOfBaseStation { // 기지국 설치
 //		int[] stations = { 4, 11 };
 //		int W = 1;
 
-		int N = 16;
-		int[] stations = {9};
-		int W = 2;
+//		int N = 16;
+//		int[] stations = {9};
+//		int W = 2;
+
+//		int N = 13;
+//		int[] stations = {3, 7, 11};
+//		int W = 1;
+
+//		int N = 5;
+//		int[] stations = {3};
+//		int W = 2;
+		
+//		int N = 6;
+//		int[] stations = {3};
+//		int W = 2;
+		
+//		int N = 16;
+//		int[] stations = {1, 16};
+//		int W = 2;
+
+//		int N = 6;
+//		int[] stations = {4};
+//		int W = 2;
+
+//		int N = 11;
+//		int[] stations = {1, 4};
+//		int W = 1;
+
+//		int N = 11;
+//		int[] stations = {1, 5};
+//		int W = 1;
+		
+//		int N = 5;
+//		int[] stations = {1, 2, 3, 4, 5};
+//		int W = 0;
+		
+		int N = 200000000;
+		int[] stations = {100000000};
+		int W = 5;
 
 		System.out.println(main.solution(N, stations, W));
 	}
@@ -21,30 +57,29 @@ public class InstallationOfBaseStation { // 기지국 설치
 	private int solution(int n, int[] stations, int w) {
 		int answer = 0;
 		
-		boolean[] v = new boolean[n+1];
+		int start = 1;
+		int end = 1;
 		
 		for (int i = 0; i < stations.length; i++) {
-			for (int j = 0; j <= w; j++) {
-				if(stations[i] + j <= n) v[stations[i] + j] = true;
-				if(0 < stations[i] - j) v[stations[i] - j] = true;
-			}
-//			System.out.println(Arrays.toString(v));
+			end = 0 < (stations[i] - w) ? stations[i] - w : start;
+			
+			int cnt = end - start;
+			System.out.println("end = " + end);
+			System.out.println("start = " + start);
+			System.out.println("cnt = " + cnt);
+			
+			answer += cnt / (w*2+1);
+			if(cnt % (w*2+1) != 0) answer++;
+			
+			start = stations[i] + w + 1;
+			System.out.println(start);
 		}
 		
-		int cnt = 0;
-		for (int i = 1; i < v.length; i++) {
-			if (!v[i]) {
-				cnt++;
-				v[i] = true;
-				if(i < v.length-1) continue;
-			}
-			answer += cnt / (w*2+1);
-			if(cnt % (w*2+1) > 0) {
-				answer += 1;
-			}
-			cnt = 0;
-			System.out.println(Arrays.toString(v));
-			System.out.println(answer);
+		end = n+1;
+		if(end - start > 0) {
+			System.out.println("end = " + end);
+			answer += (end - start) / (w*2+1);
+			if((end - start) % (w*2+1) != 0) answer++;
 		}
 		
 		return answer;
