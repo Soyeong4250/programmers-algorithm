@@ -10,6 +10,7 @@ public class DeliveryBox { // 택배 상자
 		int[] order = { 4, 3, 1, 2, 5 };
 //		int[] order = {5, 4, 3, 2, 1};
 //		int[] order = {1, 3, 5, 2, 4};
+//		int[] order = {3, 2, 1, 4, 5};
 		System.out.println(main.solution(order));
 	}
 
@@ -33,13 +34,14 @@ public class DeliveryBox { // 택배 상자
 				} else {
 					System.out.println("stack add()");
 					subBelt.add(num);
+					num++;
 				}
 			} else {
 				System.out.println("pass");
+				num++;
 				idx++;
 				cnt++;
 			}
-			num++;
 		}
 		
 		while(idx < order.length) {
