@@ -9,37 +9,45 @@ public class DeliveryBox { // 택배 상자
 
 		int[] order = { 4, 3, 1, 2, 5 };
 //		int[] order = {5, 4, 3, 2, 1};
-
+//		int[] order = {1, 3, 5, 2, 4};
 		System.out.println(main.solution(order));
 	}
 
 	private int solution(int[] order) {
 		Stack<Integer> subBelt = new Stack<Integer>();
 		
+		int num = 1;
 		int cnt = 0;
 		int idx = 0;
-		for (int i = 1; i <= order.length; i++) {
-			if(i != order[idx]) {
+		
+		while(idx < order.length && num <= order.length) {
+			
+			System.out.println("num = " + num + ", " + order[idx]);
+			if(num != order[idx]) {
+//				System.out.println("num과 order[idx] 불일치" + num + ", " + order[idx]);
 				if(!subBelt.isEmpty() && subBelt.peek() == order[idx]) {
-					cnt++;
+					System.out.println("stack pop()");
 					subBelt.pop();
+					idx++;
+					cnt++;
 				} else {
-					subBelt.add(i);
+					System.out.println("stack add()");
+					subBelt.add(num);
 				}
 			} else {
-				cnt++;
+				System.out.println("pass");
 				idx++;
+				cnt++;
 			}
-//			System.out.println("cnt = " + cnt);
-//			System.out.println(subBelt);
+			num++;
 		}
 		
 		while(idx < order.length) {
 			if(subBelt.peek() == order[idx]) {
+				subBelt.pop();
 				cnt++;
 				idx++;
-				subBelt.pop();
-			} else {
+			}else {
 				break;
 			}
 		}
