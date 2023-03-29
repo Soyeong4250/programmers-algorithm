@@ -14,10 +14,10 @@ public class Compact { // 압축
 		String msg = "TOBEORNOTTOBEORTOBEORNOT";
 //		String msg = "ABABABABABABABAB";
 
-		System.out.println(Arrays.toString(main.solution(msg)));
+		System.out.println(main.solution(msg));
 	}
 
-	private int[] solution(String msg) {
+	private List solution(String msg) {
 		List<Integer> answer = new ArrayList<>();
 		
 		HashMap<String, Integer> dict = new HashMap<>();
