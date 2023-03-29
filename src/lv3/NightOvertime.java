@@ -17,18 +17,23 @@ public class NightOvertime { // 야근 지수
 		int[] works = {1, 1};
 		int n = 3;
 
-		System.out.println(main.solution(works, n));
+		System.out.println(main.solution(n, works));
 	}
 
-	private int solution(int[] works, int n) {
-		int answer = 0;
+	private long solution(int n, int[] works) {
+		long answer = 0;
 		
 		PriorityQueue<Integer> time = new PriorityQueue<>(Collections.reverseOrder());
 		
-		
+		int sum = 0;
 		for (int i = 0; i < works.length; i++) {
 			System.out.println(works[i]);
 			time.add(works[i]);
+			sum += works[i];
+		}
+		
+		if(sum <= n) {
+			return 0;
 		}
 		
 		while(n > 0 && !time.isEmpty()) {
