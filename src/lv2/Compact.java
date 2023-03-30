@@ -10,15 +10,15 @@ public class Compact { // 압축
 	public static void main(String[] args) {
 		Compact main = new Compact();
 
-//		String msg = "KAKAO";
-		String msg = "TOBEORNOTTOBEORTOBEORNOT";
+		String msg = "KAKAO";
+//		String msg = "TOBEORNOTTOBEORTOBEORNOT";
 //		String msg = "ABABABABABABABAB";
 
-		System.out.println(main.solution(msg));
+		System.out.println(Arrays.toString(main.solution(msg)));
 	}
 
-	private List solution(String msg) {
-		List<Integer> answer = new ArrayList<>();
+	private int[] solution(String msg) {
+		List<Integer> result = new ArrayList<>();
 		
 		HashMap<String, Integer> dict = new HashMap<>();
 		
@@ -31,28 +31,28 @@ public class Compact { // 압축
 		
 		System.out.println(dict);
 		
-		int idx = 0;
-		while(msg.trim().length() > 0) {
-			System.out.println(msg.length());
-			for (int i = msg.length(); i >= 0; i--) {
-				if(dict.containsKey(msg.substring(0, i))) {
-					answer.add(dict.get(msg.substring(0, i)));
-					
-					if(i+1 >= msg.length()) {
-						i = msg.length() - 1;
+		StringBuilder sb = new StringBuilder();
+		while(msg.length() > 0) {
+			sb.delete(0, sb.length());
+			for (int i = msg.length(); i > 0; i--) {
+				String w = msg.substring(0, i);
+				if(dict.containsKey(w)) {
+					result.add(dict.get(w));
+
+					if(i < msg.length()) {
+						sb.append(w).append(msg.charAt(i));
+						dict.put(sb.toString() , ++end);
 					}
-					dict.put(msg.substring(0, i+1), ++end);
-					idx = i;
+					msg = msg.substring(i);
+					break;
 				}
 			}
-			if(idx == msg.length() - 1) {
-				break;
-			}
-			
-			msg = msg.substring(idx);
-			System.out.println("dict = " + dict);
-			System.out.println("msg = "+ msg);
-			System.out.println("idx = " + idx);
+		}
+		
+		System.out.println(result);
+		int[] answer = new int[result.size()];
+		for (int i = 0; i < answer.length; i++) {
+			answer[i] = result.get(i);
 		}
 		
 		return answer;
