@@ -19,6 +19,10 @@
     + [ROUND(숫자, 반올림할 자릿수)](#round숫자-반올림할-자릿수)
     + [TRUNCATE(숫자, 버릴 자릿수)](#truncate숫자-버릴-자릿수)
   * [LIMIT(시작 인덱스, 데이터를 조회할 개수)을 이용한 정렬](#limit시작-인덱스-데이터를-조회할-개수을-이용한-정렬)
+  * [UNION, UNION ALL](#UNION-UNION-ALL)
+    * [UNION](#UNION)
+    * [UNIONALL](#UNION-ALL)
+    * [테이블별로 정렬한 후 합치기](#테이블별로-정렬한-후-합치기)
 
 
 
@@ -224,7 +228,7 @@ FROM MATH
 
 👉 3.1415
 
-
+<br />
 
 #### LIMIT(시작 인덱스, 데이터를 조회할 개수)을 이용한 정렬
 
@@ -244,3 +248,62 @@ FROM ANIMAL_INS
 ORDER BY DATETIME LIMIT 0,1
 ```
 
+<br />
+
+#### UNION, UNION ALL
+
+##### UNION
+
+중복된 데이터 없이 두 테이블의 쿼리 결과를 합친다.
+
+아래의 쿼리문은 '오프라인/온라인 판매 데이터 통합하기' 문제의 쿼리문을 일부 변형한 것이다.
+
+```mysql
+SELECT DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, USER_ID, SALES_AMOUNT
+FROM ONLINE_SALE
+WHERE SALES_DATE LIKE '2022-03-%'
+UNION DISTINCT
+SELECT DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, NULL AS USER_ID, SALES_AMOUNT
+FROM OFFLINE_SALE
+WHERE SALES_DATE LIKE '2022-03-%'
+ORDER BY SALES_DATE, PRODUCT_ID, USER_ID
+```
+
+##### UNION ALL
+
+중복된 데이터를 제거하지 않고 테이블의 모든 데이터를 합친 결과를 반환한다.
+
+
+
+아래의 쿼리문은 '오프라인/온라인 판매 데이터 통합하기' 문제의 정답 쿼리문이다.
+
+```mysql
+SELECT DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, USER_ID, SALES_AMOUNT
+FROM ONLINE_SALE
+WHERE SALES_DATE LIKE '2022-03-%'
+UNION ALL
+SELECT DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, NULL AS USER_ID, SALES_AMOUNT
+FROM OFFLINE_SALE
+WHERE SALES_DATE LIKE '2022-03-%'
+ORDER BY SALES_DATE, PRODUCT_ID, USER_ID
+```
+
+##### 테이블별로 정렬한 후 합치기
+
+만약, 위의 쿼리문과 달리 각각의 테이블을 정렬한 뒤에 합치고 싶다면 아래와 같이 서브쿼리 내에서 ORDER BY로 정렬해준 후 UNION을 실행하면 된다.
+
+```mysql
+SELECT Q1,*
+FROM (DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, USER_ID, SALES_AMOUNT
+	FROM ONLINE_SALE
+	WHERE SALES_DATE LIKE '2022-03-%'
+	ORDER BY SALES_DATE, PRODUCT_ID, USER_ID) Q1
+UNION ALL
+SELECT Q2.*
+FROM (DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, NULL AS USER_ID, SALES_AMOUNT
+	FROM OFFLINE_SALE
+	WHERE SALES_DATE LIKE '2022-03-%'
+	ORDER BY SALES_DATE, PRODUCT_ID, USER_ID) Q2
+```
+
+ 
