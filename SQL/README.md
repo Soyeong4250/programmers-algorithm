@@ -21,7 +21,7 @@
   * [LIMIT(시작 인덱스, 데이터를 조회할 개수)을 이용한 정렬](#limit시작-인덱스-데이터를-조회할-개수을-이용한-정렬)
   * [UNION, UNION ALL](#UNION-UNION-ALL)
     * [UNION](#UNION)
-    * [UNIONALL](#UNION-ALL)
+    * [UNION ALL](#UNION-ALL)
     * [테이블별로 정렬한 후 합치기](#테이블별로-정렬한-후-합치기)
 
 
