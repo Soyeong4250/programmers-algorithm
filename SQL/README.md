@@ -26,10 +26,11 @@
     + [AVG()](#avg)
     + [MAX() / MIN()](#max--min)
 
-
 <br />
 
 <br />
+
+---
 
 ### SELECT 문
 
@@ -251,6 +252,8 @@ FROM (DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, NULL AS USE
 
 <br />
 
+---
+
 ### SUM, MAX, MIN
 
 #### 최댓값을 가진 or 최솟값을 가지는 데이터 조회
@@ -333,4 +336,10 @@ FROM Students
 ```
 
 <br />
+
+<br />
+
+---
+
+
 
