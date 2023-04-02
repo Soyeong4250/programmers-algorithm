@@ -1,4 +1,4 @@
-## SQL 문법 정리 (프로그래머스 문제 기준)
+## SQL 문법 정리
 
 ### 목차
 
@@ -9,12 +9,6 @@
     + [IFNULL(데이터 컬럼, 'NULL일 경우 표시할 데이터')](#ifnull데이터-컬럼-null일-경우-표시할-데이터)
     + [CASE WHEN 조건식 THEN 식](#case-when-조건식-then-식)
     + [COALESCE(컬럼명1, 컬럼명2, 컬럼명3)](#coalesce컬럼명1-컬럼명2-컬럼명3)
-  * [집계함수](#집계함수)
-    + [COUNT()](#count)
-    + [DISTINCT()](#distinct)
-    + [SUM()](#sum)
-    + [AVG()](#avg)
-    + [MAX() / MIN()](#max--min)
   * [반올림과 버림](#반올림과-버림)
     + [ROUND(숫자, 반올림할 자릿수)](#round숫자-반올림할-자릿수)
     + [TRUNCATE(숫자, 버릴 자릿수)](#truncate숫자-버릴-자릿수)
@@ -23,8 +17,19 @@
     * [UNION](#UNION)
     * [UNION ALL](#UNION-ALL)
     * [테이블별로 정렬한 후 합치기](#테이블별로-정렬한-후-합치기)
+- [SUM, MAX, MIN](#SUM-MAX-MIN)
+  - [최댓값을 가진 or 최솟값을 가지는 데이터 조회](#최댓값을-가진-or-최솟값을-가지는-데이터-조회)
+  - [집계함수](#집계함수)
+    + [COUNT()](#count)
+    + [DISTINCT()](#distinct)
+    + [SUM()](#sum)
+    + [AVG()](#avg)
+    + [MAX() / MIN()](#max--min)
 
 
+<br />
+
+<br />
 
 ### SELECT 문
 
@@ -129,70 +134,6 @@ FROM 테이블명
 -- 컬럼1~4 중 처음으로 만나는 NULL이 아닌 컬럼을 출력 
 SELECT COALESCE(컬럼명1, 컬럼명2, 컬럼명3, 컬럼명4)
 FROM 테이블명
-```
-
-<br />
-
-#### 집계함수
-
-##### COUNT()
-
-행의 개수를 세는 집계 함수 (단, NULL인 데이터는 제외)
-
-```SQL
-SELECT COUNT(*) -- 모든 행의 개수
-FROM Students
-```
-
-##### DISTINCT
-
-중복된 행을 제외해주는 집계함수
-
-아래 쿼리문의 경우 birthYear, birthMonth, birthday 값이 모두 같은 행들만 중복으로 취급
-
-```SQL
-SELECT DISTINCT birthyear, birthmonth, birthday
-FROM Students
-```
-
-##### SUM()
-
-모든 컬럼의 데이터를 합해주는 집계함수
-
-```sql
-SELECT SUM(AGE)
-FROM Students
-```
-
-##### AVG()
-
-모든 컬럼의 데이터의 평균을 구하는 집계함수
-
-모든 집계함수는 NULL 값을 제외하고 연산하므로 AVG()도 마찬가지로 NULL 값을 가진 행은 제외하고 평균을 구한다.
-
-```sql
-SELECT AVG(AGE)
-FROM Students
-```
-
-NULL값을 가진 데이터를 0으로 치환한 후 평균에 반영되도록 하기 위해 다음과 같이 쿼리문을 작성할 수 있다.
-
-```sql
-SELECT AVG(CASE WHEN AGE IS NULL THEN 0 ELSE AGE END)
-FROM Students
-```
-
-##### MAX() / MIN()
-
-MAX() : 최대값을 구하는 집계함수
-
-MIN() : 최소값을 구하는 집계함수
-
-MAX(), MIN()는 다른 집계함수와 달리 문자열이나 날짜에도 사용이 가능하다.
-
-```sql
-SELECT MAX(AGE), MIN(AGE)
-FROM Students
 ```
 
 <br />
@@ -306,4 +247,90 @@ FROM (DATE_FORMAT(SALES_DATE, '%Y-%m-%d') AS SALES_DATE, PRODUCT_ID, NULL AS USE
 	ORDER BY SALES_DATE, PRODUCT_ID, USER_ID) Q2
 ```
 
- 
+<br />
+
+<br />
+
+### SUM, MAX, MIN
+
+#### 최댓값을 가진 or 최솟값을 가지는 데이터 조회
+
+👉 최댓값을 가지는 데이터를 출력하기 위해서는 내림차순 정렬 후 첫번째 데이터만 출력한다.
+
+아래의 코드는 '가격이 제일 비싼 식품의 정보 출력하기' 문제의 정답 코드이다.
+
+```Mysql
+-- 코드를 입력하세요
+SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_CD, CATEGORY, PRICE
+FROM FOOD_PRODUCT
+ORDER BY PRICE DESC LIMIT 1
+```
+
+👉 최솟값을 가지는 데이터를 출력하기 위해서는 오름차순 정렬 후 첫번째 데이터만 출력한다.
+
+<br />
+
+#### 집계함수
+
+##### COUNT()
+
+행의 개수를 세는 집계 함수 (단, NULL인 데이터는 제외)
+
+```SQL
+SELECT COUNT(*) -- 모든 행의 개수
+FROM Students
+```
+
+##### DISTINCT()
+
+중복된 행을 제외해주는 집계함수
+
+아래 쿼리문의 경우 birthYear, birthMonth, birthday 값이 모두 같은 행들만 중복으로 취급
+
+```SQL
+SELECT DISTINCT birthyear, birthmonth, birthday
+FROM Students
+```
+
+##### SUM()
+
+모든 컬럼의 데이터를 합해주는 집계함수
+
+```sql
+SELECT SUM(AGE)
+FROM Students
+```
+
+##### AVG()
+
+모든 컬럼의 데이터의 평균을 구하는 집계함수
+
+모든 집계함수는 NULL 값을 제외하고 연산하므로 AVG()도 마찬가지로 NULL 값을 가진 행은 제외하고 평균을 구한다.
+
+```sql
+SELECT AVG(AGE)
+FROM Students
+```
+
+NULL값을 가진 데이터를 0으로 치환한 후 평균에 반영되도록 하기 위해 다음과 같이 쿼리문을 작성할 수 있다.
+
+```sql
+SELECT AVG(CASE WHEN AGE IS NULL THEN 0 ELSE AGE END)
+FROM Students
+```
+
+##### MAX() / MIN()
+
+MAX() : 최대값을 구하는 집계함수
+
+MIN() : 최소값을 구하는 집계함수
+
+MAX(), MIN()는 다른 집계함수와 달리 문자열이나 날짜에도 사용이 가능하다.
+
+```sql
+SELECT MAX(AGE), MIN(AGE)
+FROM Students
+```
+
+<br />
+
