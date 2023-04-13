@@ -32,6 +32,22 @@
 
 ---
 
+### MySQL 문법에서 반드시 알아야 하는 것
+
+### 쿼리문의 실행 순서
+
+⭐ FROM - ON - JOIN - WHERE - GROUP BY - HAVING - SELECT - DISTINCT - ORDER BY 
+
+### 쿼리문의 작성 순서
+
+SELECT - FROM - WHERE - GROUP BY - HAVING - OREDER BY
+
+<br />
+
+<br />
+
+---
+
 ### SELECT 문
 
 #### 날짜 포맷 변경
@@ -158,6 +174,15 @@ FROM MATH
 ```
 
 👉 3.1416
+
+소수점 위의 자릿수에서 반올림해주기 위해서는 다음과 같이 작성하면 된다
+
+```mysql
+SELECT ROUND(213.14159265358, -2)
+FROM MATH
+```
+
+👉 210 (10의 자리수에서 반올림)
 
 ##### TRUNCATE(숫자, 버릴 자릿수)
 
@@ -341,5 +366,137 @@ FROM Students
 
 ---
 
+### GROUP BY
 
+#### REGEXP()로 데이터 분류하기
+
+정규표현식을 이용한 조회 함수로, LIKE 연산보다 좀 더 유연한 검색을 할 수 있도록 도와주는 함수
+
+아래의 쿼리문은 '자동차 종류 별 특정 옵션이 포함된 자동차 수 구하기' 문제의 답을 일부 변형한 예시들이다
+
+👉 통풍시트 옵션이 포함된 모든 데이터를 조회
+
+```mysql
+SELECT CAR_TYPE, COUNT(*) AS CARS
+FROM CAR_RENTAL_COMPANY_CAR
+WHERE OPTIONS REGEXP ('통풍시트')
+GROUP BY CAR_TYPE
+ORDER BY CAR_TYPE
+```
+
+해당 쿼리문은 다음과 같이 LIKE 연산을 사용하여 작성할 수 있다
+
+```mysql
+SELECT CAR_TYPE, COUNT(*) AS CARS
+FROM CAR_RENTAL_COMPANY_CAR
+WHERE OPTIONS LIKE '%통풍시트%'
+GROUP BY CAR_TYPE
+ORDER BY CAR_TYPE
+```
+
+👉 '통풍시트', '열선시트', '가죽시트' 중 하나 이상의 옵션이 포함된 데이터를 조회
+
+```mysql
+SELECT CAR_TYPE, COUNT(*) AS CARS
+FROM CAR_RENTAL_COMPANY_CAR
+WHERE OPTIONS REGEXP ('통풍시트|열선시트|가죽시트')
+GROUP BY CAR_TYPE
+ORDER BY CAR_TYPE
+```
+
+해당 쿼리문은 다음과 같이 LIKE 연산을 사용하여 작성할 수 있다.
+
+```mysql
+SELECT CAR_TYPE, COUNT(*) AS CARS
+FROM CAR_RENTAL_COMPANY_CAR
+WHERE OPTIONS LIKE '%통풍시트%' OR
+	OPTIONS LIKE '%열선시트%' OR
+	OPTIONS LIKE '%가죽시트%'
+GROUP BY CAR_TYPE
+ORDER BY CAR_TYPE
+```
+
+👉 자동차 종류에 한글이 포함된 데이터를 조회
+
+```mysql
+SELECT CAR_TYPE, COUNT(*) AS CARS
+FROM CAR_RENTAL_COMPANY_CAR
+WHERE CAR_TYPE REGEXP('[가-힣]')
+```
+
+👉 자동차 종류에 한글로만 구성된 데이터를 조회
+
+```mysql
+SELECT CAR_TYPE, COUNT(*) AS CARS
+FROM CAR_RENTAL_COMPANY_CAR
+WHERE CAR_TYPE REGEXP('^[가-힣]+$')
+```
+
+##### 정규식 기호
+
+| 기호 | 설명                                    |
+| :--: | --------------------------------------- |
+|  .   | 문자 하나를 나타냄                      |
+|  *   | 앞에 나온 문자의 0개 이상 반복을 나타냄 |
+|  ^   | 문자열의 처음을 의미                    |
+|  $   | 문자열의 끝을 의미                      |
+| [.]  | 괄호 안에 문자열 위치를 확인            |
+| {.}  | 반복을 나타냄                           |
+|  \|  | OR를 의미                               |
+
+⚠ 정규식의 검색을 이용할 시 사용자에게 정규식 기능을 제공해서는 안됨
+
+​	👉 각종 오류가 발생할 수 있고 SQL 인젝션에 취약해지기 때문
+
+​	👉 정규식의 검색을 개발자가 미리 정한 테두리 안에서 이루어져야 함
+
+
+
+#### 쿼리에서 변수 활용하기 SET
+
+쿼리에서 변수를 사용하기 위해서는 아래와 같이 변수를 선언해주어야 한다
+
+```mysql
+SET @변수명 = 초깃값;
+```
+
+아래의 쿼리문은 '입양시각 구하기(2)'의 정답 쿼리문이다
+
+```mysql
+SET @hour = -1;
+
+SELECT (@hour := @hour + 1) as HOUR,
+    (SELECT COUNT(*) FROM ANIMAL_OUTS WHERE HOUR(DATETIME) = @hour) as COUNT
+FROM ANIMAL_OUTS
+WHERE @hour < 23;
+```
+
+시간을 -1로 초기화하고 SELECT문을 이용하여 조회하는데 이때 WHERE 명령문을 이용하여 hour변수가 23일때 미만인 경우까지만 구한다
+
+쿼리문의 실행 순서는 **FROM - ON - JOIN - WHERE - GROUP BY - HAVING - SELECT - DISTINCT - ORDER BY** 순으로 실행되는데, hour가 22일때까지만 구하여야 1이 더해져 23인 경우까지 조회되기 때문이다
+
+
+
+#### 수치연산
+
+##### 사칙연산
+
+| 연산자 |                    함수                    |  연산  |      ex      | 우선순위 |
+| :----: | :----------------------------------------: | :----: | :----------: | :------: |
+|   +    |                                            |  덧셈  |  1 + 2 -> 3  |    2     |
+|   -    |                                            |  뺄셈  | 1 - 2 -> -1  |    2     |
+|   *    |                                            |  곱셈  |  1 * 2 -> 2  |    1     |
+|   /    | a DIV b 👉 연산자와 달리 정수로 결과가 나옴 | 나눗셈 | 1 / 2 -> 0.5 |    1     |
+|   %    |                 MOD(a, b)                  | 나머지 |  1 % 2 -> 1  |    1     |
+
+👉 DIV 외에도 나눗셈의 몫을 정수로 나오게 하는 방법은 다음과 같이 소수점을 버리면 된다
+
+```mysql
+TRUNCATE(a/b, 0)
+FLOOR(a/b)
+```
+
+⚠ WHERE문을 활용한 조건식에서 연산자를 활용할 때에는 SELECT 문의 ALIAS 데이터를 가져오면 안된다
+
+​	👉 WHERE문이 SELECT 문보다 더 빠른 순서로 실행되기 때문에 SELECT 문의 ALIAS를 사용한 데이터를 활용할 수 없다
 
