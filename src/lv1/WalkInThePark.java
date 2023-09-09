@@ -1,5 +1,7 @@
 package lv1;
 
+import java.util.Arrays;
+
 public class WalkInThePark { // 공원 산책
 
 	public static void main(String[] args) {
