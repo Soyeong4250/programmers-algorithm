@@ -24,9 +24,11 @@ public class Hopscotch { // 땅따먹기
 				}
 			} else {
 				for (int j = 0; j < land[i].length; j++) {
-					for (int k = 0; k < dp.length; k++) {
+					for (int k = 0; k < land[i].length; k++) {
 						if(j == k) continue;
+						System.out.println(dp[i-1][k] + ", " + land[i][j] + " 더힘");
 						dp[i][j] = Math.max(dp[i][j], dp[i-1][k] + land[i][j]);
+						
 					}
 				}
 			}
@@ -34,7 +36,7 @@ public class Hopscotch { // 땅따먹기
 			System.out.println("-------------");
 		}
 		
-		for (int i = 0; i < dp.length; i++) {
+		for (int i = 0; i < land[0].length; i++) {
 			answer = Math.max(answer, dp[land.length-1][i]);
 		}
 		
