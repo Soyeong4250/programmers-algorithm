@@ -13,10 +13,24 @@ public class SecretCode { // 둘만의 암호
 //		int index = 5;
 		
 		// o
-		String s = "a";
-		String skip = "bcdefhijk";
-		int index = 20;
+//		String s = "a";
+//		String skip = "bcdefhijk";
+//		int index = 20;
+		
+		// bbbbb
+//		String s = "zzzzz";
+//		String skip = "a";
+//		int index = 1;
+		
+		// 
+//		String s = "zzzzzz";
+//		String skip = "abcdefghijklmnopqrstuvwxy";
+//		int index = 6;
 
+		// n
+		String s = "z";
+		String skip = "abcdefghij";
+		int index = 20;
 		System.out.println(main.solution(s, skip, index));
 	}
 
@@ -41,7 +55,8 @@ public class SecretCode { // 둘만의 암호
 			for (int key : alphabet.keySet()) {
 				if(alphabet.get(key) == ch) {
 					k = key;
-					answer.append(alphabet.get((k+index)%alphabet.size()));
+					System.out.println(alphabet.size());
+					answer.append(alphabet.get((k+index)%alphabet.size()==0 ? alphabet.size() : (k+index)%alphabet.size()));
 					break;
 				}
 			}			
