@@ -2,7 +2,6 @@ package lv1;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 
 public class RoughKeyboard { // 대충 만든 자판
 
