@@ -54,8 +54,10 @@ public class ToConvertANumber { // 숫자 변환하기
 			Info info = operation.poll();
 			System.out.println("result = " + info.result);
 			
-			
-			if(info.result + n == y || info.result * 2 == y || info.result * 3 == y) {
+			if(x == y) {
+				answer = 0;
+				break;
+			} else if(info.result + n == y || info.result * 2 == y || info.result * 3 == y) {
 				answer = info.depth + 1;
 				break;
 			} else if (info.result + n > y && info.result * 2 > y && info.result * 3 > y) {
