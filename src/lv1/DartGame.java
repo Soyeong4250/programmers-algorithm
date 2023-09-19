@@ -1,10 +1,8 @@
 package lv1;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Arrays;
 
-public class DartGame {  // 다트 게임 
+public class DartGame {  // 다트 게임
 
 	public static void main(String[] args) {
 		
@@ -28,43 +26,47 @@ public class DartGame {  // 다트 게임
 
 	private static int solution(String dartResult) {
 		int answer = 0;
-		
-		int sum = 0;
-		double number = 0;
-		StringBuilder sb = new StringBuilder();
+
+		int[] sum = new int[3];
+		int idx = 0;  // sum 인덱스
+
+		StringBuilder number = new StringBuilder();
 		for (int i = 0; i < dartResult.length(); i++) {
 			char ch = dartResult.charAt(i);
-			
-			if(Character.isDigit(ch)) {
-				sum += number;
-				number = 0;
-				System.out.println("isNumber");
-				sb.append(ch);
-			} else if('A' <= ch && ch <= 'Z') {
-				if(!sb.isEmpty()) {
-					number = Integer.parseInt(sb.toString());
-					sb.setLength(0);  // 초기화
-					
-					switch(ch) {
-					case 'D' : 
-						number = Math.pow(number, 2);
-						break;
-					case 'T' : 
-						number = Math.pow(number, 3);
-						break;
+			if(Character.isLetter(ch) && Character.isUpperCase(ch)) {
+				if(ch == 'S') {
+					sum[idx] = Integer.parseInt(number.toString());
+				} else if (ch == 'D') {
+					sum[idx] = (int)Math.pow(Integer.parseInt(number.toString()), 2);
+				} else if (ch == 'T') {
+					sum[idx] = (int)Math.pow(Integer.parseInt(number.toString()), 3);
+				}
+				number.setLength(0);
+				idx += 1;
+			} else if(ch == '*') {
+				if(idx >= 2) {
+					for (int j=idx-2; j<idx; j++) {
+						sum[j] *= 2;
+					}
+				} else {
+					for (int j = 0; j<idx; j++) {
+						sum[j] *= 2;
 					}
 				}
-			} else if (ch == '*') {
-				sum += number;
-				sum *= 2;
-			} else if (ch == '#') {
-				number *= (-1);
-				sum += number;
+			} else if(ch == '#') {
+				sum[idx-1] *= -1;
+			} else {
+				number.append(ch);
 			}
-			System.out.println("ch = " + ch + ", sum = " + sum);
+
+			System.out.println("number = " + number);
+			System.out.println("sum = " + Arrays.toString(sum));
 		}
-		
-		
-		return sum;
+
+		for (int i = 0; i < sum.length; i++) {
+			answer += sum[i];
+		}
+
+		return answer;
 	}
 }
