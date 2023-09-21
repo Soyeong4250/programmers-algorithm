@@ -17,10 +17,10 @@ public class LengthOfVisit { // 방문 길이
 	private int solution(String dirs) {
 		int answer = 0;
 		
-		boolean[][] visit = new boolean[11][11];
+		boolean[][][] visit = new boolean[11][11][4];
 		
-		int sr = 5;
-		int sc = 5;
+		int sr = 0;
+		int sc = 0;
 //		visit[sr][sc] = true;  // 원점 방문 체크
 		
 		for (int i = 0; i < dirs.length(); i++) {
@@ -47,14 +47,14 @@ public class LengthOfVisit { // 방문 길이
 				sr = nr;
 				sc = nc;
 			}
-			System.out.println("sr = " + sr + ", sc = " + sc + ", answer = " + answer);
+			System.out.printl+++n("sr = " + sr + ", sc = " + sc + ", answer = " + answer);
 		}
 		
 		return answer;
 	}
 
 	private boolean isMove(int nr, int nc, boolean[][] visit) {
-		if(0 > nr || nr >= visit.length || 0 > nc || nc >= visit[0].length) {
+		if(-5 > nr || nr > 5 || -5 > nc || nc > 5) {
 			return false;
 		}
 		
